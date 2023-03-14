@@ -1,0 +1,69 @@
+import random
+
+def probPar(frequencia):
+  prob = 0
+  for i in range(1, 11):
+    if(i % 2 == 0):
+      prob = prob + frequencia[i]
+  return prob
+
+def probPrimo(frequencia):
+  prob = 0
+  for i in range(1, 11):
+    if((i == 2) or (i == 3) or (i == 5) or (i == 7)):
+      prob = prob + frequencia[i]
+  return prob
+
+def probMenorCinco(frequencia):
+  prob = 0
+  for i in range(1, 11):
+    if(i < 5):
+      prob = prob + frequencia[i]
+  return prob
+
+def probParMaior(frequencia):
+  prob = 0
+  for i in range(1, 11):
+    if((i > 3) and (i % 2 == 0)):
+      prob = prob + frequencia[i]
+  return prob
+
+numeros = [0]*100
+frequencia = [0]*11
+aux = [0]*11
+for i in range(100):
+  numeros[i] = random.randint(1,10)
+
+for i in range(100):
+  if (numeros[i] == 1):
+    aux[1] = aux[1] + 1
+  if (numeros[i] == 2):
+    aux[2] = aux[2] + 1
+  if (numeros[i] == 3):
+    aux[3] = aux[3] + 1      
+  if (numeros[i] == 4):
+    aux[4] = aux[4] + 1      
+  if (numeros[i] == 5):
+    aux[5] = aux[5] + 1      
+  if (numeros[i] == 6):
+    aux[6] = aux[6] + 1      
+  if (numeros[i] == 7):
+    aux[7] = aux[7] + 1      
+  if (numeros[i] == 8):
+    aux[8] = aux[8] + 1      
+  if (numeros[i] == 9):
+    aux[9] = aux[9] + 1      
+  if (numeros[i] == 10):
+    aux[10] = aux[10] + 1      
+
+for i in range(10):
+  frequencia[i+1] = aux[i+1]/100
+
+print("----------Frequencias Relativas----------")
+for i in range(10):
+  print("Frequencia relativa do numero[",i+1,"]: ",frequencia[i+1])
+
+print("\nProbabilidade de numero par: ",round(probPar(frequencia), 2))
+print("Probabilidade de numero primo: ",round(probPrimo(frequencia), 2))
+print("Probabilidade de numero menor que 5: ",round(probMenorCinco(frequencia), 2))
+print("Probabilidade de numero par maoir que 3: ",round(probParMaior(frequencia), 2))

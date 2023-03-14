@@ -1,0 +1,15 @@
+R - O erro se encontra na declaração e criação dos metodos, para solucionar é necessaria inciar os metodos corretamente com o indicador de privacidade(public) e o "static" para ser possivel ultilizar o metodo sem a necessidade de um objeto proprio.
+Depois é necessario excluir o retorno do metodo pois ele foi declarado com "void".
+
+class Main {
+
+  public static void product() {
+    int a = 6, b = 5, c = 4, result;
+    result = a * b * c;
+    System.out.printf("Result is %d%n", result); 
+  }
+
+  public static void main(String[] args) {
+    product();   
+  }
+}

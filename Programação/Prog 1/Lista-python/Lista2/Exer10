@@ -1,0 +1,6 @@
+dias = int(input())
+print(int(dias/365),"ano(s)")
+dias -= int(dias/365)*365
+print(int(dias/30),"mes(es)")
+dias -= int(dias/30)*30
+print(dias,"dia(s)")

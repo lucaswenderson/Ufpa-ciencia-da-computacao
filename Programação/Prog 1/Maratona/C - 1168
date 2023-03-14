@@ -1,0 +1,27 @@
+nCasos = int(input())
+
+for i in range(nCasos):
+  led = 0
+  valor = input()
+  for j in range(len(valor)):
+    if valor[j] == '1':
+      led += 2
+    elif valor[j] == '2':
+      led += 5
+    elif valor[j] == '3':
+      led += 5
+    elif valor[j] == '4':
+      led += 4
+    elif valor[j] == '5':
+      led += 5
+    elif valor[j] == '6':
+      led += 6
+    elif valor[j] == '7':
+      led += 3
+    elif valor[j] == '8':
+      led += 7
+    elif valor[j] == '9':
+      led += 6
+    elif valor[j] == '0':
+      led += 6
+  print("%i leds" %(led))

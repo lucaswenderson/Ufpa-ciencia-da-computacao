@@ -1,0 +1,28 @@
+import java.util.Scanner;
+import java.lang.Math;
+
+class Main {
+
+  public static double distance(double x1, double y1, double x2, double y2) {
+    double distance = Math.sqrt(Math.pow(x2-x1,2) + Math.pow(y2-y1,2));
+    return distance;
+  }
+
+  public static void main(String[] args) {
+    Scanner ler = new Scanner(System.in);
+
+    System.out.println("Insira as coordenadas do ponto A");
+    System.out.print("A(x1): ");
+    double x1 = ler.nextDouble();
+    System.out.print("A(y1): ");
+    double y1 = ler.nextDouble();
+
+    System.out.println("\nInsira as coordenadas do ponto B");
+    System.out.print("B(x2): ");
+    double x2 = ler.nextDouble();
+    System.out.print("B(y2): ");
+    double y2 = ler.nextDouble();
+
+    System.out.print("\nA distancia entre A e B é: "+distance(x1,y1,x2,y2));
+  }
+}

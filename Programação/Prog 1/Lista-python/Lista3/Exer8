@@ -1,0 +1,45 @@
+a, b, c = input().split(" ")
+a, b, c = float(a), float(b), float(c)   
+if (a>=b and a>=c):
+  if (b>=c):
+    maior = a
+    meio = b
+    menor = c
+  else:
+    maior = a
+    meio = c
+    menor = b
+if (b>a and b>c):
+  if(a>c):
+    maior = b
+    meio = a
+    menor = c      
+  else:
+    maior = b
+    meio = c
+    menor = a
+if (c>b and c>a):
+  if(b>a):
+    maior = c
+    meio = b
+    menor = a     
+  else:
+    maior = c
+    meio = a
+    menor = b      
+a = maior
+b = meio
+c = menor
+if (a >= b + c):
+  print("NAO FORMA TRIANGULO")
+else:
+  if ( (a**2) == (b**2) + (c**2) ):
+    print("TRIANGULO RETANGULO")
+  if ( (a**2) > (b**2) + (c**2) ):
+    print("TRIANGULO OBTUSANGULO")
+  if ( (a**2) < (b**2) + (c**2) ):
+    print("TRIANGULO ACUTANGULO")
+  if ( (a == b) and (a == c) and (b == c) ):
+    print("TRIANGULO EQUILATERO")
+  if ( ((a == b) and (a != c)) or ((a == c) and (a != b)) or ((b == c) and (b != a)) ):
+    print("TRIANGULO ISOSCELES")

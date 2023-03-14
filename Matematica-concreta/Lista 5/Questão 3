@@ -1,0 +1,14 @@
+def fatorial(n):
+  if n == 0 or n == 1:
+    return 1
+  else:
+    return n * fatorial(n-1)
+
+def combinacao(n, p):
+  return fatorial(n)/(fatorial(p)*fatorial(n-p))
+
+
+n = int(input("Insira o valor de n: "))
+p = int(input("Insira o valor de p: "))
+print("\n")
+print("A combinação Cn,p é igual a: ", combinacao(n, p))

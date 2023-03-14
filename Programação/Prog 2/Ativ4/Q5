@@ -1,0 +1,31 @@
+import java.util.Scanner;
+import java.lang.Math;
+
+class Main {
+
+  public static double e(int n, int x) {
+    double e = 1;
+    for(int i = 1; i <= n; i ++) {
+      e = e + (Math.pow(x,i)/(double)fatorial(i));
+    }
+    return e;
+  }
+
+  public static int fatorial(int n) {
+    int f = 1;
+    while(n > 1) { 
+      f = f * n ;
+      n--;
+    }
+    return f;
+  }
+
+  public static void main(String[] args) {
+    Scanner ler = new Scanner(System.in);
+    System.out.print("Quantos termos ? ");
+    int n = ler.nextInt();
+      System.out.print("Valor de x ? ");
+    int x = ler.nextInt();
+    System.out.println("e^x : "+ e(n,x));
+  }
+}

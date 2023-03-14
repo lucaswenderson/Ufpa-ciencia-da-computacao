@@ -1,0 +1,75 @@
+#include <iostream>
+using namespace std;
+
+struct VetInt{
+  private:
+    float vet[50];
+    int n;
+  public:
+    VetInt(){
+      n = 0;
+    }
+    void insereFinal(float x);
+    void sortVet();
+    void exibeVet();
+};
+typedef VetInt vi;
+
+void VetInt::insereFinal(float x){
+  vet[n] = x;
+  n++;
+}
+
+void VetInt::sortVet(){
+  for(int i=0; i < n-1; i++){
+    int min = i;
+    for(int j=i+1; j < n; j++){
+      if (vet[j] < vet[min]){
+        min = j;
+      }
+    }
+    float aux = vet[i];
+    vet[i] = vet[min];
+    vet[min] = aux;
+  }
+}
+
+void VetInt::exibeVet(){
+  cout << "Vetor > [ ";
+  for(int i=0; i < n; i++){
+    cout << vet[i] << " ";
+  }
+  cout << "]";
+}
+
+int main(){
+  vi vetor;
+  float valor;
+  int x;
+  do {
+    cout << "-------------Menu-------------\n";
+    cout << "\n";
+    cout << "1 - Inserir elemento no fim\n";
+    cout << "2 - Ordenar os elementos\n";
+    cout << "3 - Exibir elementos\n";
+    cout << "4 - Encerrar programa\n";
+    cout << "\n";
+    cout << "Insira a opção deseada: ";
+    cin >> x;
+    
+    switch(x){
+      case 1 :
+        cout << "Insira o valor que deseja adicionar no final do vetor: ";
+        cin >> valor;
+        vetor.insereFinal(valor);
+        break;
+      case 2 :
+        vetor.sortVet();
+        break;
+      case 3 :
+        vetor.exibeVet();
+        break;
+    }
+    cout << "\n";
+  } while( x != 4 );
+}

@@ -1,0 +1,27 @@
+from random import randrange
+
+def limPrimo(bit, qnt):
+  primos = [ ]
+  aux = 0
+  if (11 <= bit <= 10**6): 
+    while True :
+      aleatorio = randrange(2, bit + 1)
+      
+      for i in range(2, aleatorio):
+        if(aleatorio % i) == 0:
+          aux += 1
+
+      if (aux == 0) and (aleatorio not in primos) :
+        primos.append(aleatorio)
+      aux = 0
+      if len(primos) >= qnt  :
+        return str(qnt)+" numeros primos aleatorios no intervalo de "+str(bit)+": "+str(primos)
+  else:
+    return "Valor de limite invalido"
+    
+print("Insira o limite 'N' desejado: (Valores validos no intervalo de 11 -- 10**6)")
+num = int(input())
+print("Insira quantos primos deseja gerar: ")
+qnt = int(input())
+
+print("\n",limPrimo(num, qnt))

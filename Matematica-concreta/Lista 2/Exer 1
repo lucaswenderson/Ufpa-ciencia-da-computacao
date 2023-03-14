@@ -1,0 +1,12 @@
+lista = []
+listaImpar = []
+n = int(input("Insira o tamanho da sequencia: "))
+print("\nInsira os valores da sequencia: ")
+for i in range(n):
+  lista.append(int(input()))
+
+for i in lista:
+  if i % 2 != 0:
+    listaImpar.append(i)
+
+print("Subsequencia de números primos >",listaImpar)

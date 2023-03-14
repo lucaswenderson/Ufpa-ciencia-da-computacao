@@ -1,0 +1,28 @@
+#Melhor Forma[matriz(i,j)] :
+
+  import numpy
+  Matriz = numpy.zeros((i,j))
+
+
+#Forma Pratica Definida[Matriz(i,j)] :
+
+  Matriz = [[0]*j, [0]*j, [0]*j, ...] #repetir i vezes o padrão
+  
+
+#Forma Padrão Indefinida
+
+  i = int(input())
+  j = int(input())
+  matriz = []
+  for indice in range(i):
+    matrizAux = [0]*j
+    matriz.append(matrizAux) 
+
+
+
+
+
+
+
+
+

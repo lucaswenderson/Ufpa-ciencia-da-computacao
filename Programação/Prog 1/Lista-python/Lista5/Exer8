@@ -1,0 +1,20 @@
+#import numpy
+#Matriz = numpy.zeros((12,12))
+Matriz = [[0]*12,[0]*12,[0]*12,[0]*12,[0]*12,[0]*12,[0]*12,[0]*12,[0]*12,[0]*12,[0]*12,[0]*12]
+operacao = input()
+total = 0
+cont = 0
+
+for i in range(12):
+  for j in range(12):
+    Matriz[i][j] = float(input())
+for i in range(12):
+  for j in range(11-i):
+      total += Matriz[i][j]
+      cont += 1 
+
+if(operacao == "S"):
+  print(format(total,".1f"))
+elif(operacao == "M"):
+  total /= cont
+  print(format(total,".1f"))

@@ -1,0 +1,11 @@
+# Questão 8
+
+print("Insira respectivamente os valores de A1, An e K: ")
+A1, An, k = map(int,input().split(" "))
+n = k + 2
+razao = (An / A1)**(1/(n-1))
+lista = [0]*n
+lista[0] = float(A1)
+for i in range(1, n):
+  lista[i] = lista[i-1] * razao
+print("\nSequência >", lista)  

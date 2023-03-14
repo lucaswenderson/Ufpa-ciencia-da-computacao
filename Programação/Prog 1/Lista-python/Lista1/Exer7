@@ -1,0 +1,5 @@
+x = int(input())
+y = int(input())
+z = int(input())
+w = int(input())
+print("DIFERENCA =", x*y-z*w)

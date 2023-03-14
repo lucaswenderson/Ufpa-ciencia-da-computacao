@@ -1,0 +1,18 @@
+import java.util.Scanner;
+
+class Main {
+
+  static long fibonacci(int n) {
+    return (n < 2) ? n : fibonacci(n - 1) + fibonacci(n - 2);
+  }
+
+  public static void main(String[] args) {
+    Scanner ler = new Scanner(System.in);
+    System.out.print("Insira o valor de n: ");
+    int n = ler.nextInt();
+    
+    for (int i = 0; i <= n; i++) {
+      System.out.println("(" + i + "):" + fibonacci(i) + "\t");
+    }
+  }
+}

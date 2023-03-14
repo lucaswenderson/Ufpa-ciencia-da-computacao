@@ -1,0 +1,96 @@
+class Animal {
+  private String nome;
+  private double comprimento;
+  private int numPat;
+  private String cor;
+  private String ambiente;
+  private double velocidade;  
+
+  public String getNome() {	return nome; }
+  public double getComprimento() { return comprimento; }
+  public int getNumPat() { return numPat; }
+  public String getCor() { return cor; }
+  public String getAmbiente() { return ambiente; }
+  public double getVelocidade() { return velocidade; }
+
+	public void setNome(String nome) { this.nome = nome; }
+  public void setComprimento(double comprimento) { this.comprimento = comprimento; }
+	public void setNumPat(int numPat) { this.numPat = numPat; }
+	public void setCor(String cor) { this.cor = cor; }
+	public void setAmbiente(String ambiente) { this.ambiente = ambiente; }
+  public void setVelocidade(double velocidade) { this.velocidade = velocidade; }
+
+  public Animal(String nome, double comprimento, int numPat, String cor, String ambiente, double velocidade) {
+    this.setNome(nome);
+    this.setComprimento(comprimento);
+    this.setNumPat(numPat);
+    this.setCor(cor);
+    this.setAmbiente(ambiente);
+    this.setVelocidade(velocidade);
+  }
+
+  public String toString() {
+    String output = "Animal: "+this.nome+"\n"+
+                    "Comprimento: "+this.comprimento+" cm"+"\n"+
+                    "Patas: "+this.numPat+"\n"+
+                    "Cor: "+this.cor+"\n"+
+                    "Ambiente: "+this.ambiente+"\n"+
+                    "Velocidade: "+this.velocidade+" m/s"+"\n";
+    return output;
+  }
+}
+
+class Peixe extends Animal {
+  private String caracteristica;
+
+  public String getCaracteristica() { return caracteristica; }
+	public void setCaracteristica(String caracteristica) { this.caracteristica = caracteristica; }
+
+  public Peixe(String nome, double comprimento, int numPat, String cor, String ambiente, double velocidade, String caracteristica) {
+    super(nome, comprimento, numPat, cor, ambiente, velocidade);
+    this.setCaracteristica(caracteristica);
+  }
+
+  public String toString() {
+    String output = super.toString()+
+                    "Caracteristica: "+this.caracteristica+"\n";
+    return output;
+  }
+}
+
+class Mamifero extends Animal {
+  private String alimento;
+
+  public String getAlimento() { return alimento; }
+	public void setAlimento(String alimento) { this.alimento = alimento; }
+
+  public Mamifero(String nome, double comprimento, int numPat, String cor, String ambiente, double velocidade, String alimento) {
+    super(nome, comprimento, numPat, cor, ambiente, velocidade);
+    this.setAlimento(alimento);
+  }
+
+  public String toString() {
+    String output = super.toString()+
+                    "Alimento: "+this.alimento+"\n";
+    return output;
+  }
+}
+
+class Main {
+  public static void main(String[] args) {
+    Animal an1 = new Animal("Camelo", 150, 4, "Amarelo", "Terra", 2);
+    Peixe an2 = new Peixe("Tubarão", 300, 0, "Cincento", "Mar", 1.5, "Barbatanas e caudas");
+    Mamifero an3 = new Mamifero("Urso-do-canada", 180, 4, "Vermelho", "Terra", 0.5, "Mel");
+
+    System.out.println("Zoo:");
+    System.out.println("------------------");
+    System.out.println(an1.toString());
+    System.out.println("------------------");
+    System.out.println("------------------");
+    System.out.println(an2.toString());
+    System.out.println("------------------");
+    System.out.println("------------------");
+    System.out.println(an3.toString());
+    System.out.println("------------------");   
+  }
+}

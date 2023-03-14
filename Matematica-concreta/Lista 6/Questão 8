@@ -1,0 +1,70 @@
+import random
+from random import randrange
+u, f, p, a = ord('u'), ord('f'), ord('p'), ord('a')
+
+bit = 100
+primos = [ ]
+aux = 0
+
+while True :
+  aleatorio = randrange(0, bit + 1)
+
+  for i in range(2, aleatorio):
+    if (aleatorio % i) == 0:
+      aux += 1
+  if aux == 0:
+    primos.append(aleatorio)
+  aux = 0
+
+  if len(primos) > 1:
+    break
+
+n = primos[0] * primos[1]
+phi =(primos[0] - 1) * (primos[1] - 1)
+
+def E(phi):
+  def mdc(n1, n2):
+    rest = 1
+    while(n2 != 0):
+      rest = n1 % n2
+      n1 = n2
+      n2 = rest
+    return n1
+
+  while True:
+    e = random.randrange(2, phi)
+    if(mdc(phi, e) == 1):
+      return e
+
+e = E(phi)
+
+u = u ** e
+f = f ** e
+p = p ** e
+a = a ** e
+
+
+def mod(a, b):
+  if(a < b):
+    return a
+  else:
+    c = a % b
+    return c
+
+d = mod(e, phi)
+
+print("Sua chave publica: ", n, e)
+print("Sua chave privada: ", d)
+
+print("\nMensagem Cifrada UFPA")
+print('U: ', mod(a=u, b=n))
+print('F: ', mod(a=f, b=n))
+print('P: ', mod(a=p, b=n))
+print('A: ', mod(a=a, b=n))
+
+print("\n")
+
+print('U: ', mod((mod(a=u, b=n) ** d), n))
+print('F: ', mod(a=f, b=n))
+print('P: ', mod(a=p, b=n))
+print('A: ', mod(a=a, b=n))

@@ -1,0 +1,9 @@
+def mdc(a, b):
+  while (b != 0) :
+    a, b = b, a % b
+  return a
+
+nCasos = int(input())
+for i in range(nCasos):
+  numeros = list(map(int, input().split()))
+  print(mdc(numeros[0], numeros[1]))

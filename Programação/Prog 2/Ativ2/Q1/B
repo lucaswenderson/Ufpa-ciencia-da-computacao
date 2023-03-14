@@ -1,0 +1,21 @@
+import java.util.Scanner;
+import java.lang.Math;
+
+class Main {
+
+  public static int smallest(int x, int y, int z) {
+    int min = Math.min(Math.min(x, y), z);
+    return min;
+  }
+
+  public static void main(String[] args) {
+    Scanner ler = new Scanner(System.in);
+    System.out.print("Insira o numero 1: ");
+    int num1 = ler.nextInt();
+    System.out.print("Insira o numero 2: ");
+    int num2 = ler.nextInt();
+    System.out.print("Insira o numero 3: ");
+    int num3 = ler.nextInt();
+    System.out.print("Menor numero é: "+smallest(num1,num2,num3));
+  }
+}

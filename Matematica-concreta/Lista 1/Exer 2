@@ -1,0 +1,25 @@
+# Questão 2
+
+def checkPA(lista, n): 
+  if (n == 1): return "Tamanho da sequencia invalido"
+  if (n == 2): return "Tamanho da sequencia invalido"
+  razao = lista[1] - lista[0]
+   
+  for i in range(2, n): 
+    if (lista[i] - lista[i-1] != razao): 
+      return "Não é uma PA"
+  if (razao > 0):
+    return "É uma PA crescente"
+  elif (razao < 0):
+    return "É uma PA decrescente"
+  else: return "É uma PA constante"      
+
+lista = []
+print("Insira o tamanho da sequencia: ")
+n = int(input())
+print("\nInsira os valores da sequencia: ")
+for i in range(n):
+  lista.append(int(input()))
+resposta = checkPA(lista, n)
+print("\n"*10)
+print(lista,">",resposta)

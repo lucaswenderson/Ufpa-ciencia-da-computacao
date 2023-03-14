@@ -1,0 +1,111 @@
+class Televisao {
+  private int volume;
+  private int canal;
+
+  public Televisao(int volume, int canal) {
+    setVolume(volume);
+    setCanal(canal);
+  }
+
+  public Televisao() {}
+
+  public int getVolume() {
+    return volume;
+  }
+
+  public void setVolume(int volume) {
+    this.volume = volume;
+  }
+
+  public int getCanal() {
+    return canal;
+  }
+
+  public void setCanal(int canal) {
+    this.canal = canal;
+  }
+
+  public void aumentarCanal() {
+    setCanal(getCanal() + 1);
+  }
+
+  public void diminuirCanal() {
+    setCanal(getCanal() - 1);
+  }
+
+  public void aumentarVolume() {
+    setVolume(getVolume() + 1);
+  }
+
+  public void diminuirVolume() {
+    setVolume(getVolume() - 1);
+  }
+}
+
+class ControleRemoto {
+  private Televisao televisao;
+
+  public ControleRemoto(int volume, int canal) {
+    televisao = new Televisao(volume, canal);
+  }
+
+  public ControleRemoto() {
+    televisao = new Televisao();
+  }
+
+  public void addCanal() {
+    televisao.aumentarCanal();
+    System.out.println("Foi para o canal: "+televisao.getCanal());
+  }
+
+  public void dimCanal() {
+    televisao.diminuirCanal();
+    System.out.println("Foi para o canal: "+televisao.getCanal());
+  }
+
+  public void addVolume() {
+    televisao.aumentarVolume();
+    System.out.println("Aumentou o volume para: "+televisao.getVolume());
+  }
+
+  public void dimVolume() {
+    televisao.diminuirVolume();
+    System.out.println("Diminuiu o volume para: "+televisao.getVolume());
+  }
+
+  public void trocarCanal(int canal) {
+    televisao.setCanal(canal);
+    System.out.println("Foi para o canal: "+televisao.getCanal());
+  }
+
+  public void info() {
+    System.out.println("A televisao esta no canal "+televisao.getCanal()+" e no volume "+televisao.getVolume());
+  }
+
+}
+
+class Main {
+  public static void main(String[] args) {
+    ControleRemoto controle1 = new ControleRemoto(); 
+    ControleRemoto controle2 = new ControleRemoto(10,5); 
+    
+    controle1.addCanal();
+    controle1.addCanal(); 
+    controle2.addCanal(); 
+    
+    controle1.addVolume();
+    controle1.addVolume();
+    controle2.addVolume(); 
+    
+    controle1.trocarCanal(5); 
+    controle2.trocarCanal(8); 
+
+    controle1.dimVolume();
+    controle2.dimVolume(); 
+    controle2.dimVolume(); 
+
+    controle1.info();
+    controle2.info();
+
+  }
+}

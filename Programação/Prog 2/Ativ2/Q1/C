@@ -1,0 +1,15 @@
+import java.util.Scanner;
+
+class Main {
+
+  public static void instructions() {
+    System.out.println("Exemplo de instrução");
+    Scanner ler = new Scanner(System.in);
+    System.out.print("Insira o numero 1: ");
+    int num1 = ler.nextInt();
+  }
+
+  public static void main(String[] args) {
+    instructions();
+  }
+}

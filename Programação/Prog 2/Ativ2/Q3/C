@@ -1,0 +1,13 @@
+R - O erro se encontra na declaração e criação dos metodos, para solucionar é necessaria inciar os metodos corretamente com o indicador de privacidade(public) e o static para ser possivel ultilizar o metodo sem a necessidade de um objeto proprio.
+Depois é necessario excluir a declaração dupla da variavel "a".
+
+class Main {
+
+  public static void f(float a) {
+    System.out.print(a); 
+  }
+
+  public static void main(String[] args) {
+    f(4);   
+  }
+}

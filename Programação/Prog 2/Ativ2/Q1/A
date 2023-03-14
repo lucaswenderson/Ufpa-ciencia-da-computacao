@@ -1,0 +1,19 @@
+import java.util.Scanner;
+import java.lang.Math;
+
+class Main {
+
+  public static double hypotenuse(double side1, double side2) {
+    double h = Math.sqrt((side1*side1)+(side2*side2));
+    return h;
+  }
+
+  public static void main(String[] args) {
+    Scanner ler = new Scanner(System.in);
+    System.out.print("Insira o lado 1: ");
+    double num1 = ler.nextDouble();
+    System.out.print("Insira o lado 2: ");
+    double num2 = ler.nextDouble();
+    System.out.print("A hipotenusa é: "+hypotenuse(num1,num2));
+  }
+}

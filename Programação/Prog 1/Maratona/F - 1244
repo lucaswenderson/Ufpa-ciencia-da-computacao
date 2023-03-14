@@ -1,0 +1,9 @@
+nCasos = int(input())
+for i in range(nCasos):
+  string = input().split()
+  string.sort(key=len , reverse=True)
+  for j in range(len(string)):
+    print(string[j], end = '')
+    if j != len(string)-1:
+      print(' ', end = '')
+  print()

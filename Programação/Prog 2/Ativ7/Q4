@@ -1,0 +1,111 @@
+import java.util.Scanner;
+
+class Ingresso {
+  private double valor;
+  
+  public double getValor() { return valor; }
+  public void setValor(double valor) { this.valor = valor; }
+
+  public Ingresso(double valor) {
+    this.setValor(valor);
+  }
+
+  public void imprimeValor() {
+    System.out.println("Valor do Igresso: "+this.valor);
+  }
+}
+
+class VIP extends Ingresso {
+  private double valorAdicional;
+  
+  public double getValorAdicional() { return valorAdicional; }
+  public void setValorAdicional(double valorAdicional) { this.valorAdicional = valorAdicional; }
+
+  public VIP(double valor, double valorAdicional) {
+    super(valor);
+    this.setValorAdicional(valorAdicional);
+  }
+  
+  public double valorIngressoVip() {
+    return super.getValor() + valorAdicional;       
+  }
+}
+
+class Normal extends Ingresso { 
+  public Normal(double valor) {
+    super(valor);
+  }
+
+  public void imprime() {
+     System.out.println("Ingresso Normal: " +super.getValor()+"R$");      
+  }
+}
+
+class CamaroteInferior extends VIP {
+  private String localizacao;
+    
+  public String getLocalizacao() { return localizacao; }
+  public void setLocalizacao(String localizacao) { this.localizacao = localizacao; }
+
+
+  public CamaroteInferior(double valor, String localizacao, double valorAdicional) {
+    super(valor, valorAdicional);
+    this.setLocalizacao(localizacao);
+  }
+  
+  public void imprimeLocalizacao() {
+    System.out.println("Localização: "+this.localizacao);
+  }
+
+  public double valorIngresso() {
+    return super.valorIngressoVip();  
+  }
+}
+
+class CamaroteSuperior extends VIP {
+  private double valorAdicionalSup;
+  
+  public double getValorAdicionalSup() { return valorAdicionalSup; }  
+  public void setValorAdicionalSup(double valorAdicionalSup) { this.valorAdicionalSup = valorAdicionalSup; }
+
+  public CamaroteSuperior(double valor, double valorAdicional, double valorAdicionalSup) {
+    super(valor, valorAdicional);
+    this.setValorAdicionalSup(valorAdicionalSup);
+  }
+
+  public double valorIngresso() {
+    return super.valorIngressoVip() + valorAdicionalSup;  
+  }
+}   
+
+public class Main {
+  public static void main(String[] args) {
+    Scanner ler = new Scanner(System.in);
+
+    System.out.println("1 - Ingresso Normal");  
+    System.out.println("2 - Ingresso VIP");
+    int ing = ler.nextInt();
+
+    if(ing == 1) {
+      Normal ingressoNormal = new Normal(20);
+      ingressoNormal.imprime();
+    }
+    else if(ing == 2) {
+      System.out.println("1 - Camarote Superior");  
+      System.out.println("2 - Camarote Inferior");
+      int vip = ler.nextInt();
+
+      if(vip == 1) {
+        CamaroteSuperior ingressoVipSup = new CamaroteSuperior(20,10,5);
+        System.out.println("Camarote Superior"); 
+        System.out.println("Valor do Igresso: "+ingressoVipSup.valorIngresso());
+      } else if(vip == 2) {
+        CamaroteInferior ingressoVipInf = new CamaroteInferior(20,"2A",10);
+        System.out.println("Camarote Inferior"); 
+        System.out.println("Valor do Igresso: "+ingressoVipInf.valorIngresso());
+      }
+    }
+
+
+  }   
+}

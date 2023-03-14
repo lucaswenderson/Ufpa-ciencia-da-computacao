@@ -1,0 +1,7 @@
+j = 1
+x = [0]*11
+x[0] = int(input())
+for i in range(10):
+  x[j] = x[j-1]*2
+  print("N[%i] = %i" %(i, x[i]))
+  j += 1

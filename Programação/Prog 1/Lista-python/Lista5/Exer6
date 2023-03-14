@@ -1,0 +1,17 @@
+#import numpy
+#Matriz = numpy.zeros((12,12))
+Matriz = [[0]*12,[0]*12,[0]*12,[0]*12,[0]*12,[0]*12,[0]*12,[0]*12,[0]*12,[0]*12,[0]*12,[0]*12]
+linha = int(input())
+operacao = input()
+total = 0
+
+for i in range(12):
+  for j in range(12):
+    Matriz[i][j] = float(input())
+for j in range(12):
+  total += Matriz[linha][j] 
+if(operacao == "S"):
+  print(format(total,".1f"))
+elif(operacao == "M"):
+  total /= 12
+  print(format(total,".1f"))

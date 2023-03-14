@@ -1,0 +1,48 @@
+import java.util.*;
+import java.lang.Math;
+
+class Main {
+
+  public static int produto(ArrayList<Integer> arr) {
+    int resultado = 1;
+    for (int n : arr) {
+      resultado = resultado * n;
+    }  
+    return resultado;
+  }
+
+  public static void main(String[] args) {
+    int flag = -1;
+    Scanner ler = new Scanner(System.in);
+    ArrayList<Integer> arr = new ArrayList<Integer>();
+
+    System.out.print("Insira o primeiro numero: ");
+    int n1 = ler.nextInt();
+    arr.add(n1);
+    System.out.print("Insira o segundo numero: ");
+    int n2 = ler.nextInt();
+    arr.add(n2);
+
+    System.out.print("O produto dos numeros ");
+    for (int i : arr) {
+      System.out.print(i+" ");
+    }  
+    System.out.println("é = "+produto(arr)); 
+
+    System.out.print("Deseja continuar ?(1 - Sim / 0 - Não)");
+    flag = ler.nextInt();
+
+    while(flag != 0) {
+      System.out.print("Insira o novo numero: ");
+      int n = ler.nextInt();
+      arr.add(n);
+      System.out.print("O produto dos numeros ");
+      for (int i : arr) {
+        System.out.print(i+" ");
+      }  
+      System.out.println("é = "+produto(arr)); 
+      System.out.print("Deseja continuar ?(1 - Sim / 0 - Não)");
+      flag = ler.nextInt();
+    }
+  }
+}

@@ -1,0 +1,60 @@
+#include <iostream>
+using namespace std;
+
+typedef struct ListaEncadeada {
+	private:
+		typedef int tDado;
+		struct No {
+			tDado dado;
+			No* prox;
+		};
+		typedef No* ptNo;
+		ptNo p;
+
+	public:
+		ListaEncadeada() {
+			p = NULL;
+		}
+
+    void imprimir(){
+      ptNo aux;
+
+      aux = p;
+      while (aux != NULL) {
+        cout << aux -> dado << "  ";
+        aux = aux -> prox;
+      }
+    }
+
+		void inserir_inicio(tDado x) {
+			ptNo q, r;
+
+			r = new No;
+			r -> dado = x;
+
+			if (p == NULL) {
+				p = r;
+				r -> prox = NULL;
+			}
+			else {
+				r -> prox = p;
+				p = r;
+			}
+		}
+} arrayEncadeado;
+
+
+int main() {
+  int x = 1, y;
+	arrayEncadeado lista;
+
+  while(x != 0){
+    cout << "\n\nInsira o valor que deseja inserir no inicio da lista: ";
+    cin >> y;
+    lista.inserir_inicio(y);
+    cout << "Lista >> ";
+    lista.imprimir();
+    cout << "\nDeseja inserir outro valor(Sim = 1 // Não = 0): ";
+    cin >> x;
+  }
+}

@@ -1,0 +1,57 @@
+import java.util.Scanner;
+
+class Rectangle {
+	private float length;
+	private float width;
+
+  public Rectangle() {
+    this.length = 1;
+    this.width = 1;
+  }
+
+	public float getLength() {
+		return length;
+	}
+
+	public void setLength(float length) {
+    if((0 < length) && (length < 20.0)) {
+		  this.length = length;
+    }
+	}
+
+	public float getWigth() {
+		return width;
+	}
+
+	public void setWidth(float width) {
+    if((0 < width) && (width < 20.0)) {
+		  this.width = width;
+    }
+	}
+
+  public float area() {
+    return width*length;
+  }
+
+  public float perimetro() {
+    return 2*(width+length);
+  }
+}
+
+
+class Main {
+
+  public static void main(String[] args) {
+    Scanner ler = new Scanner(System.in);
+    Rectangle r = new Rectangle();
+
+    System.out.print("Insira o comprimento: ");
+    float length = ler.nextFloat();
+    r.setLength(length);
+    System.out.print("Insira a largura: ");
+    float width = ler.nextFloat();
+    r.setWidth(width);
+    System.out.println("Area do retangulo: "+r.area());
+    System.out.println("Perimetro do retangulo: "+r.perimetro());
+  }
+}

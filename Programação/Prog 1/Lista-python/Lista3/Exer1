@@ -1,0 +1,9 @@
+import math
+a, b, c = input().split(" ")
+a, b, c = float(a), float(b), float(c)
+delta = (b**2)-(4*a*c)
+if (delta < 0 or a == 0):
+  print("Impossivel calcular")
+else:
+  print("R1 =", format( ((-b)+math.sqrt(delta))/(2*a),".5f"))
+  print("R2 =", format( ((-b)-math.sqrt(delta))/(2*a),".5f"))  

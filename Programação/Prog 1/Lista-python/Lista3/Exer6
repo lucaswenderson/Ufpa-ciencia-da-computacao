@@ -1,0 +1,23 @@
+x, y, z = input().split(" ")
+x, y, z = int(x), int(y), int(z) 
+if (x >= y and x >= z) :
+  if(y >= z):
+    print("%i\n%i\n%i\n" %(z, y, x))
+    print("%i\n%i\n%i" %(x, y, z))
+  else:
+    print("%i\n%i\n%i\n" %(y, z, x))
+    print("%i\n%i\n%i" %(x, y, z))
+if (y >= x and y >= z) :
+  if(x >= z):
+    print("%i\n%i\n%i\n" %(z, x, y))
+    print("%i\n%i\n%i" %(x, y, z))
+  else:
+    print("%i\n%i\n%i\n" %(x, z, y))
+    print("%i\n%i\n%i" %(x, y, z))
+if (z >= x and z >= y) :
+  if(x >= y):
+    print("%i\n%i\n%i\n" %(y, x, z))
+    print("%i\n%i\n%i" %(x, y, z))
+  else:
+    print("%i\n%i\n%i\n" %(x, y, z))
+    print("%i\n%i\n%i" %(x, y, z))

@@ -1,0 +1,102 @@
+class Agenda {
+  private Pessoa[] agenda;  
+
+  public Agenda() {
+    agenda = new Pessoa[10];
+  }
+
+  public void armazenaPessoa(Pessoa pessoa) {
+		for(int i = 0; i < agenda.length; i++ ) { 
+			if(agenda[i] == null) { 
+				agenda[i] = pessoa; 
+        System.out.println(pessoa.getNome() + " adicionado(a)");
+				break;
+			}
+		}
+	}
+
+  public void removerPessoa(String nome) {
+		for (int i = 0; i < agenda.length; i++) {
+      if(agenda[i] == null) {
+        break;
+      } 
+			else if(agenda[i].getNome() == nome) { 
+				agenda[i] = null;
+
+				for (int k = i; k < agenda.length - 1; k++){
+					agenda[k] = agenda[k+1];
+          agenda[k+1] = null;
+        }
+        
+				System.out.println(nome + " removido"); 
+				break; 
+			}
+		}
+	}
+
+  public int buscarPessoa(String nome) {	
+    for (int i = 0; i < agenda.length; i++) {
+      if(agenda[i] == null)
+        continue;
+      if (agenda[i].getNome() == nome)  
+        return i;
+    }
+    return -1;
+	}
+
+  public void imprimeAgenda() {
+    for(int i = 0; i < agenda.length; i++ ){
+      if(agenda[i] != null){
+        System.out.println("Nome: "+agenda[i].getNome());
+        System.out.println("Numero: "+agenda[i].getNumero());
+      }
+    }
+  }
+
+  public void imprimePessoa(int index) {
+    System.out.println("Nome: "+agenda[index].getNome());
+    System.out.println("Numero: "+agenda[index].getNumero());
+  }
+} 
+
+class Pessoa {
+  private String nome;
+  private int numero;
+
+  public Pessoa(String nome, int numero) {
+    this.nome = nome;
+    this.numero = numero;
+  }
+
+  public String getNome() {
+    return nome;
+  }
+
+  public int getNumero() {
+    return numero;
+  }
+} 
+
+class Main {
+  public static void main(String[] args) {
+
+    Agenda agenda = new Agenda();
+
+    Pessoa lucas = new Pessoa("Lucas", 91998);
+    Pessoa joao = new Pessoa("João", 91976);
+    Pessoa harume = new Pessoa("Harume", 91925);
+    agenda.armazenaPessoa(lucas);
+    agenda.armazenaPessoa(joao);
+    agenda.armazenaPessoa(harume);
+
+    System.out.println("Pessoa na posição: "+agenda.buscarPessoa("Harume"));
+    System.out.println("Pessoa na posição: "+agenda.buscarPessoa("Lucas"));
+
+    agenda.imprimeAgenda();
+
+    agenda.removerPessoa("João");
+
+    agenda.imprimeAgenda();
+
+  }
+}

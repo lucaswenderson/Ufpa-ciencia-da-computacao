@@ -1,0 +1,8 @@
+n = int(input("Insira o valor do limite(n): "))
+somatorio = 0
+for i in range(1,n+1):
+  x = int(input("\nInsira o valor de x[%i]: " %i))
+  y = int(input("Insira o valor de y[%i]: " %i))
+  somatorio += (1/x)+(1/y)
+
+print("\nO resultado do somatório é > %.4f" %somatorio)

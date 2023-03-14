@@ -1,0 +1,43 @@
+# Questão 7
+
+def checkPG(lista, n): 
+  cont = 0
+  if (n <= 1): return "Tamanho da sequencia invalido"
+  if (n <= 2): return "Tamanho da sequencia invalido"
+  
+  for i in range(1,n):
+    if (lista[i] == 0):
+      cont += 1
+  if (cont == (n-1)):
+    return "È uma PG estacionaria"
+
+  razao = lista[1] / lista[0]
+   
+  for i in range(2, n): 
+    if (lista[i] / lista[i-1] != razao): 
+      return "Não é uma PG"
+  if ((razao > 1 and lista[0] > 0) or (0 < razao < 1 and lista[0] < 0)):
+    return "È uma PG crescente"
+  elif ((0 < razao < 1 and lista[0] > 0) or (razao > 1 and lista[0] < 0)):
+    return "È uma PG decrescente"
+  elif (razao == 1 and lista[0] != 0):
+    return "È uma PG constante"
+  elif (razao < 0):
+    return "È uma PG alternante"
+
+
+lista = []
+print("Insira o tamanho da sequencia: ")
+n = int(input())
+
+print("\nInsira os valores da sequencia: ")
+for i in range(n):
+  valor = input()
+  if "/" in valor:
+    a, b = map(float,valor.split("/"))
+    valor = a/b
+  lista.append(float(valor))
+
+resposta = checkPG(lista, n)
+print("\n"*10)
+print(lista,"\n",resposta)

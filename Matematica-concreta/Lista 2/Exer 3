@@ -1,0 +1,19 @@
+listaA = []
+listaB = []
+n = int(input("Insira o tamanho da sequencia A: "))
+print("\nInsira os valores da sequencia A: ")
+for i in range(n):
+  listaA.append(int(input()))
+
+n = int(input("Insira o tamanho da sequencia B: "))
+print("\nInsira os valores da sequencia B: ")
+for i in range(n):
+  listaB.append(int(input()))
+
+listaBA = listaB + listaA
+
+print("\n"*20)
+
+print('Lista A >',listaA)
+print('Lista B >',listaB)
+print('\nLista BA >',listaBA)

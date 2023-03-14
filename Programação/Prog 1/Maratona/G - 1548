@@ -1,0 +1,10 @@
+nCasos = int(input())
+for i in range(nCasos):
+  nAlunos = int(input())
+  notas = list(map(int,input().split()))
+  notasAux = sorted(notas, reverse = True)
+  total = 0
+  for j in range(len(notas)):
+    if (notas[j] == notasAux[j]):
+      total +=1
+  print(total)

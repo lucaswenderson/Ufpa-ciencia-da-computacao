@@ -1,0 +1,46 @@
+#include <iostream>
+using namespace std;
+
+typedef int tDado;
+struct No {
+	tDado dado;
+	No* prox;
+};
+typedef No* ptNo;
+
+void imprimir(ptNo p){
+  ptNo aux;
+  aux = p;
+
+  if (p == NULL) {
+    cout << "Sem elementos na lista.";
+  }
+  else {
+    while (aux != NULL) {
+      cout << aux -> dado << "  ";
+      aux = aux -> prox;
+    }
+  }
+}
+
+int main() {
+	No* p;
+	ptNo x1 = new No;
+	ptNo x2 = new No;
+	ptNo x3 = new No;
+	ptNo x4 = new No;
+
+	x1 -> dado = 4;
+	x2 -> dado = 7;
+	x3 -> dado = 1;
+	x4 -> dado = 9;
+	p = x1;
+	x1 -> prox = x2;
+	x2 -> prox = x3;
+	x3 -> prox = x4;
+	x4 -> prox = NULL;
+
+  ptNo aux;
+  aux = p;
+  imprimir(aux);
+}

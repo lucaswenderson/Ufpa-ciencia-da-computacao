@@ -1,0 +1,17 @@
+def arranjo(r):
+  lista = []
+  for i in range(2**r):
+    lista.append(bin(i))
+  for i in range(len(lista)):
+    lista[i] = lista[i].replace('0b', '')
+    if len(lista[i]) < r:
+      digitosFaltando = r - len(lista[i])
+      aux = digitosFaltando * '0'
+      lista[i] = aux + lista[i]
+  return lista
+
+r = int(input("Insira o valor de r: "))
+arranjo = arranjo(r)
+
+for i in range(2**r):
+  print(arranjo[i])

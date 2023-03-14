@@ -1,0 +1,10 @@
+lista = []
+n = int(input("Insira o tamanho da sequencia: "))
+print("\nInsira os valores da sequencia: ")
+for i in range(n):
+  lista.append(int(input()))
+
+k = int(input("Insira o valor de 'k': "))
+
+print("\nSequencia completa >", lista)
+print("Prefixo com tamanho",k," >", lista[:k])

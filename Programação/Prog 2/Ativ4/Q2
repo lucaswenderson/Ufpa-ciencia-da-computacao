@@ -1,0 +1,21 @@
+import java.util.Scanner;
+
+class Main {
+
+  public static void fatorial(int n) {
+    int f = 1;
+    while(n > 1) { 
+      f = f * n ;
+      n--;
+    }
+    System.out.print("Fatorial: " + f);
+  }
+
+  public static void main(String[] args) {
+    Scanner ler = new Scanner(System.in);
+    System.out.print("Insira o numero: ");
+    int n = ler.nextInt();
+    if(n > 0)
+      fatorial(n);
+  }
+}

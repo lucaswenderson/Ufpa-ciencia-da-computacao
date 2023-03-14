@@ -1,0 +1,91 @@
+#include <iostream>
+#include <bits/stdc++.h>
+using namespace std;
+
+typedef struct ListaEncadeada {
+	private:
+		typedef int tDado;
+		struct No {
+			tDado dado;
+			No* prox;
+		};
+		typedef No* ptNo;
+		ptNo p;
+
+	public:
+		ListaEncadeada() {
+			p = NULL;
+		}
+
+    void imprimir(){
+      ptNo aux;
+
+      aux = p;
+      while (aux != NULL) {
+        cout << aux -> dado << "  ";
+        aux = aux -> prox;
+      }
+    }
+
+		void inserir_final(tDado x) {
+			ptNo q, r;
+
+			r = new No;
+			r -> dado = x;
+			r -> prox = NULL;
+
+			if (p == NULL) {
+				p = r;
+			}
+			else {
+				q = p;
+				while (q -> prox != NULL) {
+					q = q -> prox;
+				}
+				q -> prox = r;
+			}
+		}
+
+    int retornarElemento (int k){
+      ptNo q;
+      int cont = 0;
+
+      if(p == NULL){
+        cout << "A lista está vazia\n";
+        return INT_MIN;
+      }
+      if((cont == k) && (p != NULL)){
+        return p -> dado;
+      }
+      q = p;
+      while(cont <= k){
+        if(cont == k)
+          return q -> dado;
+        if(q -> prox != NULL)
+          q = q -> prox;
+        else
+          break;
+        cont = cont + 1;
+      }
+      return INT_MIN;
+    }
+} arrayEncadeado;
+
+
+int main() {
+	arrayEncadeado lista;
+  int x;
+  
+
+  lista.inserir_final(4);
+  lista.inserir_final(7);
+  lista.inserir_final(1);
+  lista.inserir_final(9);
+  lista.inserir_final(2);
+  cout << "Lista >> ";
+  lista.imprimir();
+  cout << "\nDeseja o elemento de qual posição: ";
+  cin >> x;
+  cout << "Elemento da posição "<< x <<" : ";
+  cout << lista.retornarElemento(x);
+}

@@ -1,0 +1,12 @@
+codigo, quant = input().split(" ")
+quant = int(quant)
+if (codigo == "1"):
+  print("Total: R$", format(quant*4.0,".2f"))
+elif(codigo == "2"):
+  print("Total: R$", format(quant*4.5,".2f"))
+elif(codigo == "3"):
+  print("Total: R$", format(quant*5.0,".2f"))
+elif(codigo == "4"):
+  print("Total: R$", format(quant*2.0,".2f"))
+elif(codigo == "5"):
+  print("Total: R$", format(quant*1.5,".2f"))

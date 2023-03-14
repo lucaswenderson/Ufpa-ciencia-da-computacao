@@ -1,0 +1,15 @@
+a) R: valores de variaves de tipo 'final' são definitivos e imutaveis
+
+final int ARRAY_SIZE = 5;
+ARRAY_SIZE = 10;
+
+b) R: a iteração no "for" está fora do limite de tamanho do array devido ao "<="
+
+int[] b = new int[10];
+for(int j = 0; j <= b.length; j++)
+  b[j] = 1; 
+
+c) R: a sintaxe na atribuição de valor esta incorreta, o certo seria "a[1][1] = 5;"
+
+int[][] a = {{1,2},{3,4}};
+a[1,1] = 5;

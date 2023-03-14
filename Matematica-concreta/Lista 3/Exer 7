@@ -1,0 +1,3 @@
+n = int(input("Insira o valor do limite(n): "))
+somatorio = (n*(n+1))/2
+print("O resultado do somatório dos produtos é > ", somatorio)

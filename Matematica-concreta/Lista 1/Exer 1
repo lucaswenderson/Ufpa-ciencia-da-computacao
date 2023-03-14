@@ -1,0 +1,32 @@
+# print("Yes") if(checkPA(lista, n)) else print("No") 
+# Questão 1
+
+  # a) 
+    lista = [0]*7
+    lista[0] = 5
+
+    print("N[1] = %i\n" %(lista[0]))
+
+    for i in range(1,7):
+      lista[i] = lista[i-1] + 3
+      print("N[%i] = %i" %(i + 1, lista[i]))    
+
+  # b)
+    lista = [0]*7
+    lista[0] = 2
+
+    print("N[1] = %i\n" %(lista[0]))
+
+    for i in range(1,7):
+      lista[i] = lista[i-1]**2 
+      print("N[%i] = %i" %(i + 1, lista[i]))
+
+  # c)
+    lista = [0]*7
+    lista[0] = 0
+
+    print("N[1] = %i\n" %(lista[0]))
+
+    for i in range(1,7):
+      lista[i] = lista[i-1]*2 
+      print("N[%i] = %i" %(i + 1, lista[i]))

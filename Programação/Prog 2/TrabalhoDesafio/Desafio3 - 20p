@@ -1,0 +1,34 @@
+import java.util.InputMismatchException;
+import java.util.Scanner;
+
+public class Main {
+	public static void main(String[] args) {
+		Scanner ler = new Scanner(System.in);
+		System.out.println("Insira os valores limites(inteiros e positivos): ");
+
+		try {
+			long num1 = ler.nextLong();
+			long num2 = ler.nextLong();
+
+      if(num1 > 0 || num2 > 0) {
+        if(num2 > num1) {
+          System.out.println("Os numeros palindromos entre "+num1+" e "+num2+ " : ");
+          for(long i = num1; i <= num2; i++) {
+            String invert = new StringBuilder(String.valueOf(i)).reverse().toString();
+            if(invert.equals(String.valueOf(i))) {
+              System.out.println(i);
+            }
+          }
+        }
+        else {
+          System.out.println("O segundo número deve ser maior que o primeiro");
+        }
+      }
+      else {
+        System.out.println("São necessarios 2 inteiros positivos!");
+      }
+		} catch (InputMismatchException e) {
+      System.out.println("Os números devem ser inteiros no limite de 64 bits");
+		}
+	}
+}

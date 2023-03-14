@@ -1,0 +1,16 @@
+R - O erro se encontra na declaração e criação dos metodos, para solucionar é necessaria inciar os metodos corretamente com o indicador de privacidade(public) e o "static" para ser possivel ultilizar o metodo sem a necessidade de um objeto proprio.
+Depois é necessario adicionar o retorno pois o metodo foi declarado como int.
+
+
+class Main {
+
+  public static int sum(int x, int y) {
+    int result;
+    result = x + y;
+    return result;
+  }
+
+  public static void main(String[] args) {
+    System.out.print(sum(5,4));    
+  }
+}

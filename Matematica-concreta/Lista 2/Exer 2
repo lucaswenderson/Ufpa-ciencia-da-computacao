@@ -1,0 +1,17 @@
+lista = []
+listaPrimo = []
+n = int(input("Insira o tamanho da sequencia: "))
+print("\nInsira os valores da sequencia: ")
+for i in range(n):
+  lista.append(int(input()))
+
+for valor in lista:
+  if valor > 1:
+    x = 0
+    for j in range(2, valor):
+      if (valor % j) == 0:
+        x+=1
+    if (x == 0):
+      listaPrimo.append(valor)
+
+print("Subsequencia de numeros primos >",listaPrimo)

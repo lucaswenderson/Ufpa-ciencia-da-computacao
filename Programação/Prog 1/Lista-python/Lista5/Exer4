@@ -1,0 +1,22 @@
+impar = [None]*5; par = [None]*5
+tamanhoImpar = 0; tamanhoPar = 0
+for i in range(15):
+  valor = int(input())
+  if(valor % 2 == 0):
+    par[tamanhoPar] = valor
+    tamanhoPar += 1
+  else:
+    impar[tamanhoImpar] = valor
+    tamanhoImpar += 1
+  if(tamanhoPar == 5):
+    for j in range(5):
+      print("par[%i] = %i" %(j, par[j]))
+    tamanhoPar = 0
+  if(tamanhoImpar == 5):
+    for j in range(5):
+      print("impar[%i] = %i" %(j, impar[j]))
+    tamanhoImpar = 0
+for i in range(tamanhoImpar):
+  print("impar[%i] = %i" %(i, impar[i]))
+for i in range(tamanhoPar):
+  print("par[%i] = %i" %(i, par[i]))

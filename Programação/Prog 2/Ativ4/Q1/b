@@ -1,0 +1,15 @@
+class Main {
+
+  public static void intervalo() {
+    int i = 0, sum = 0;
+    while(i <= 100) {
+      sum = sum + i;
+      System.out.println(sum);
+      i++;
+    }
+  }
+
+  public static void main(String[] args) {
+    intervalo();
+  }
+}

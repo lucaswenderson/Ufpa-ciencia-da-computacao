@@ -1,0 +1,160 @@
+import java.util.ArrayList;
+
+class Pessoa {
+	private String nome;
+	private double peso;
+
+  public Pessoa(String nome, double peso) {
+    setNome(nome);
+    setPeso(peso);
+  }
+
+	public double getPeso() {
+		return peso;
+	}
+
+	public void setPeso(double peso) {
+		this.peso = peso;
+	}
+
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+}
+
+class Elevador {
+  private int andarAtual;
+  private int andarTotal;
+  private double capacidade;
+  private ArrayList<Pessoa> pessoas; 
+  private int numPessoas;
+
+  private int getNumPessoas() {
+    return numPessoas;
+  }
+
+  private void setNumPessoas(int numPessoas) {
+    this.numPessoas = numPessoas;
+  }
+
+  private int getAndarAtual() {
+    return andarAtual;
+  }
+
+  private void setAndarAtual(int andarAtual) {
+    this.andarAtual = andarAtual;
+  }
+
+  private int getAndarTotal() {
+    return andarTotal;
+  }
+
+  private void setAndarTotal(int andarTotal) {
+    this.andarTotal = andarTotal;
+  }
+
+  private double getCapacidade() {
+    return capacidade;
+  }
+
+  private void setCapacidade(double capacidade) {
+    this.capacidade = capacidade;
+  }
+
+  private ArrayList<Pessoa> getPessoas() {
+    return pessoas;
+  }
+
+  private void setPessoas(Pessoa pessoa) {
+    this.pessoas.add(pessoa);
+  }
+
+  public void inicializa(double capacidade, int andarTotal) {
+    setAndarAtual(0);
+    setNumPessoas(0);
+    setAndarTotal(andarTotal);
+    setCapacidade(capacidade);
+    pessoas = new ArrayList<Pessoa>();
+  }
+
+  private double pesoTotal() {
+    double pesoTotal = 0;
+
+    for(Pessoa p : getPessoas()) {
+      pesoTotal += p.getPeso();
+    }
+    return pesoTotal;
+  }
+  
+  public void entra(Pessoa pessoa) {
+    if(pesoTotal() >= getCapacidade())
+      System.out.println("Capacidade maxima alcançada, impossivel entrar. ");
+    else {
+      setPessoas(pessoa);
+      setNumPessoas(getNumPessoas() + 1);
+      System.out.println("Pessoa "+pessoa.getNome()+" entrou no elevador.");
+    }
+  }
+
+  public void sai(Pessoa pessoa) {
+    if(getNumPessoas() == 0) {
+      System.out.println("Elevador vazio");
+    }
+    else {
+      getPessoas().remove(pessoa);
+      setNumPessoas(getNumPessoas() - 1);
+      System.out.println("Pessoa "+pessoa.getNome()+" saiu do elevador.");
+    }
+  }
+
+  public void sobe() {
+    if(getAndarAtual() == getAndarTotal())
+      System.out.println("Inpossivel subir, ja esta no ultimo andar.");
+    else {
+      setAndarAtual(getAndarAtual() + 1);
+      System.out.println("Elevador foi do andar "+(getAndarAtual()-1)+" para o andar "+getAndarAtual());
+    }
+  }
+
+  public void desce() {
+    if(getAndarAtual() == 0)
+      System.out.println("Inpossivel descer, ja esta no terreo.");
+    else {
+      setAndarAtual(getAndarAtual() - 1);
+      System.out.println("Elevador foi do andar "+(getAndarAtual()+1)+" para o andar "+getAndarAtual());
+    }
+  }
+}
+
+class Main {
+  public static void main(String[] args) {
+
+    Elevador elevador = new Elevador();
+    elevador.inicializa(50,5);
+
+    Pessoa lucas = new Pessoa("Lucas", 10);
+    Pessoa harume = new Pessoa("Harume", 20);
+    Pessoa joao = new Pessoa("João", 30);
+
+    elevador.sai(lucas);
+    elevador.desce();
+
+    elevador.sobe();
+    elevador.entra(harume);    
+    elevador.sobe();
+    elevador.entra(joao);
+    elevador.sobe();
+    elevador.sobe();
+    elevador.entra(lucas);
+    elevador.sobe();
+    elevador.sobe();
+    elevador.sai(joao);
+    elevador.desce();
+    elevador.desce();
+    elevador.entra(lucas);
+  }
+}

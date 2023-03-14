@@ -1,0 +1,1 @@
+É sempre dito como boa prática que atributos internos devem ser privados, pois classes externas nem devem saber que ele existe. O que a classe expõe são suas funcionalidades, sua API, se preferir. Expor atributos internos pode causar sérios problemas de segurança. Se tem algo que é inerente à implementação, que pode vir a mudar no futuro. provavelmente deve ser privado.

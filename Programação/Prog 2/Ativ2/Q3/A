@@ -1,0 +1,18 @@
+R - O erro se encontra na declaração e criação dos metodos, para solucionar é necessaria inciar os metodos corretamente com o indicador de privacidade(public) e o "static" para ser possivel ultilizar o metodo sem a necessidade de um objeto proprio.
+Depois é necessario separar os metodos pois a chamada dentro um do outro é possivel porem a criação não.
+
+class Main {
+
+  public static void g() {
+    System.out.println("Inside methodo g");
+    h();
+  }
+
+  public static void h() {
+    System.out.println("Inside methodo h");
+  }
+
+  public static void main(String[] args) {
+    g();
+  }
+}

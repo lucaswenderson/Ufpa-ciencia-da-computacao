@@ -1,0 +1,31 @@
+#Questão 9 
+
+def check(lista, n):
+
+  razao = lista[1] / lista[0]
+
+  for i in range(2, n): 
+    if (lista[i] / lista[i-1] != razao):
+      return print("Não é uma PG")
+
+  soma = ((lista[0]*(razao**n))-lista[0])/(razao-1)
+  produto = (lista[0]**n)*(razao**((n*(n-1))/2))
+
+
+  print("Sequencia >",lista)
+  print("Soma =",soma)
+  print("Produto =",produto)
+
+lista = []
+print("Insira o tamanho da sequencia: ")
+n = int(input())
+
+print("\nInsira os valores da sequencia: ")
+for i in range(n):
+  valor = input()
+  if "/" in valor:
+    a, b = map(float,valor.split("/"))
+    valor = a/b
+  lista.append(float(valor))
+
+check(lista, n)

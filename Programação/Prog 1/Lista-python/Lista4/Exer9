@@ -1,0 +1,21 @@
+i2 = 1;
+while True:
+  if(i2 != 1):
+    i2 = int(input("novo calculo (1-sim 2-nao)"))
+    if (i2 == 2):
+      break
+    continue
+  else:
+    i1 = 0
+    soma = 0
+    while(i1 < 2):
+      nota = float(input())
+      if(0 <= nota <= 10):
+        soma += nota
+        i1 += 1
+      else:
+        print("nota invalida")
+    print("media =", format(soma/2,".2f"))
+    i2 = int(input("novo calculo (1-sim 2-nao)"))
+    if (i2 == 2):
+      break

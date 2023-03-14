@@ -1,0 +1,113 @@
+#include <iostream>
+using namespace std;
+
+typedef struct ListaEncadeada {
+	private:
+		typedef int tDado;
+		struct No {
+			tDado dado;
+			No* prox;
+		};
+		typedef No* ptNo;
+		ptNo p;
+
+	public:
+		ListaEncadeada() {
+			p = NULL;
+		}
+
+    void imprimir(){
+      ptNo aux;
+
+      aux = p;
+      while (aux != NULL) {
+        cout << aux -> dado << "  ";
+        aux = aux -> prox;
+      }
+    }
+
+		void inserir_final(tDado x) {
+			ptNo q, r;
+
+			r = new No;
+			r -> dado = x;
+			r -> prox = NULL;
+
+			if (p == NULL) {
+				p = r;
+			}
+			else {
+				q = p;
+				while (q -> prox != NULL) {
+					q = q -> prox;
+				}
+				q -> prox = r;
+			}
+		}
+
+    bool inserirElemento (int k, int x){
+      ptNo q, anterior, atual;
+      int cont = 0;
+
+      if((p == NULL) && (k == 0)){
+        q = new No;
+        q -> dado = x;
+        q -> prox = NULL;
+        p = q;
+        return true;
+      }else if((p != NULL) && (p -> prox == NULL) && (k == 0)){
+        atual = p;
+        q = new No;
+        q -> dado = x;
+        q -> prox = atual;
+        p = q;
+        return true;
+      }else if((p != NULL) && (p -> prox != NULL) && (k > 0)){
+        atual = p;
+        anterior = p;
+        while(cont <= k){
+          if(cont == k){
+            q = new No;
+            q -> dado = x;
+            q -> prox = atual;
+            anterior -> prox = q;
+            return true;
+          }if(atual -> prox != NULL){
+            anterior = atual;
+            atual = atual -> prox;
+            cont = cont + 1;
+          }else
+            break;
+          cont = cont + 1;
+        }
+      }
+      return false;
+    }
+} arrayEncadeado;
+
+
+int main() {
+	arrayEncadeado lista;
+  int x, y;
+  bool resul; 
+  
+
+  lista.inserir_final(4);
+  lista.inserir_final(7);
+  lista.inserir_final(1);
+  lista.inserir_final(9);
+  lista.inserir_final(2);
+  cout << "Lista >> ";
+  lista.imprimir();
+  cout << "\nDeseja qual valor: ";
+  cin >> x;
+  cout << "Em qual posição: ";
+  cin >> y;
+  resul = lista.inserirElemento(y,x);
+  if (resul == true){
+    cout << "\nLista >> ";
+    lista.imprimir();
+  }else{
+    cout << "Não foi possivel realizar a operação";
+  }
+}

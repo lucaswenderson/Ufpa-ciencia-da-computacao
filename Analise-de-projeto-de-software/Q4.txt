@@ -1,0 +1,208 @@
+import java.util.ArrayList;
+
+class ContaBancaria {
+  private String numConta;
+	private float saldo;
+  private String correntista;
+
+	public ContaBancaria(){}
+
+	public ContaBancaria(String numConta, float saldo, String correntista){
+		this.numConta = numConta;
+    this.saldo = saldo;
+    this.correntista = correntista;
+  }
+
+  public String getNumConta() {
+    return numConta;
+  }
+
+  public float getSaldo() {
+    return saldo;
+  }
+
+  public String getCorrentista() {
+    return correntista;
+  }  
+
+  public void setSaldo(float saldo) {
+    this.saldo = saldo;
+  }
+}
+
+class Dados {
+  private static Dados instancia;
+  private ArrayList<ContaBancaria> contas = new ArrayList<ContaBancaria>();
+  
+	private Dados() {}
+	public static Dados getInstancia() {
+		if (instancia == null)
+			instancia = new Dados();
+		return instancia;
+	}
+
+  public void inserir(String nome, String numConta, float valor) {
+    ContaBancaria conta = new ContaBancaria(numConta, valor, nome);
+    contas.add(conta);
+  }
+
+  public void alterar(String numConta, float valor) {
+    ContaBancaria conta = buscar(numConta);
+    int id = contas.indexOf(conta);
+    conta.setSaldo(valor);
+    contas.set(id, conta);    
+  }
+
+  public void remover(String numConta) {
+    contas.remove(contas.indexOf(buscar(numConta)));
+  }
+
+  public ContaBancaria buscar(String numConta) {
+    for(ContaBancaria conta : contas) {
+      if(conta.getNumConta().equals(numConta)) {
+        return conta;
+      }
+    }
+    return null;
+  }
+
+}
+
+class FachadaNegocioDados{
+  private static FachadaNegocioDados instancia;
+  private Dados dados = Dados.getInstancia();
+  
+	private FachadaNegocioDados() {}
+	public static FachadaNegocioDados getInstancia() {
+		if (instancia == null)
+			instancia = new FachadaNegocioDados();
+		return instancia;
+	}
+
+  public void criarConta(String nome, String numConta, float valor){
+    dados.inserir(nome, numConta, valor);
+	}  
+
+  public void realizarDeposito(float valor, String numConta) {
+    dados.alterar(numConta, valor);
+  }
+
+  public ContaBancaria getConta(String numConta) {
+    return dados.buscar(numConta);
+  }
+} 
+
+class Negocio {
+  private static Negocio instancia;
+  private FachadaNegocioDados facade = FachadaNegocioDados.getInstancia();
+  
+	private Negocio() {}
+	public static Negocio getInstancia() {
+		if (instancia == null)
+			instancia = new Negocio();
+		return instancia;
+	}
+
+  public void criarConta(String nome, String numConta, float valor){
+    facade.criarConta(nome, numConta, valor);
+	}
+
+  public void realizarDeposito(float valor, String numConta){
+    float saldo = obterSaldo(numConta);
+    facade.realizarDeposito(valor+saldo, numConta);
+	}
+
+  public void realizarSaque(float valor, String numConta){
+    float saldo = obterSaldo(numConta);
+    if(saldo > valor) {
+      facade.realizarDeposito(saldo-valor, numConta);
+    }
+	}
+
+	public float obterSaldo(String numConta){
+		return facade.getConta(numConta).getSaldo();
+	}
+
+	public String obterCorrentista(String numConta){
+		return facade.getConta(numConta).getCorrentista();
+	}
+}
+
+class FachadaUINegocio{
+  private static FachadaUINegocio instancia;
+  private Negocio negocio = Negocio.getInstancia();
+  
+	private FachadaUINegocio() {}
+	public static FachadaUINegocio getInstancia() {
+		if (instancia == null)
+			instancia = new FachadaUINegocio();
+		return instancia;
+	}
+
+  public void realizarDeposito(float valor, String numConta) {
+    negocio.realizarDeposito(valor, numConta);
+  }
+
+  public void realizarSaque(float valor, String numConta) {
+    negocio.realizarSaque(valor, numConta);
+  }
+
+  public void criarConta(String nome, String numConta, float valor) {
+    negocio.criarConta(nome, numConta, valor);
+  }
+
+  public String[] informacoes(String numConta) {
+    String[] infos = new String[2];
+    infos[0] = negocio.obterCorrentista(numConta);
+    infos[1] = String.valueOf(negocio.obterSaldo(numConta));
+    return infos;
+  }
+} 
+
+class UI {
+  private static UI instancia;
+  private FachadaUINegocio facade = FachadaUINegocio.getInstancia();
+  
+	private UI() {}
+	public static UI getInstancia() {
+		if (instancia == null)
+			instancia = new UI();
+		return instancia;
+	}
+
+  public void realizarDeposito(float valor, String numConta) {
+    facade.realizarDeposito(valor, numConta);
+    apresentarRelatorio(numConta);
+  }
+
+  public void realizarSaque(float valor, String numConta) {
+    facade.realizarSaque(valor, numConta);
+    apresentarRelatorio(numConta);
+  }
+
+  public void criarConta(String nome, String numConta, float valor) {
+    facade.criarConta(nome, numConta, valor);
+  }
+
+  public void apresentarRelatorio(String numConta) {
+    String[] infos = facade.informacoes(numConta);
+    System.out.println("Estado atual da conta: "+ numConta);
+    System.out.println("Correntista: "+ infos[0]);
+    System.out.println("Valor: "+ infos[1]);    
+  }
+  
+}
+
+public class Main {
+ public static void main(String[] args) {
+
+   UI conta = UI.getInstancia();
+
+   conta.criarConta("Lucas", "111", 0); //necessario preveamente
+
+   conta.apresentarRelatorio("111");  
+   conta.realizarDeposito(200, "111");
+   conta.realizarDeposito(200, "111");
+   conta.realizarSaque(200, "111");
+  }
+}

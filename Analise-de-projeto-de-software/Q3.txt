@@ -1,0 +1,256 @@
+interface IPedidoEstado { 
+  public void doAction(String action);
+}
+
+class Comprando implements IPedidoEstado {
+  private Pedido pedido;
+
+  public Comprando(Pedido pedido) {
+    this.pedido = pedido;
+  }
+  
+  public void adicionar() {
+    System.out.println("Adicionando item ao carrinho...");
+    this.pedido.numItens += 1;
+    System.out.println("Qtd. de produtos: " + this.pedido.numItens);
+  } 
+  
+  public void remover() {
+    if (this.pedido.numItens > 0){
+      System.out.println("Removendo item ao carrinho...");
+      this.pedido.numItens -= 1;
+      System.out.println("Qtd. de produtos: " + this.pedido.numItens);
+    } else {
+      System.out.println("Não há produtos para remover");
+    }
+  } 
+  
+  public void carrinhoFechado() {
+    System.out.println("Você finalizou o carrinho");
+    this.pedido.estado = new Fechado(this.pedido);
+  } 
+  
+  public void doAction(String action) {
+    if (action == "Fechado"){
+      carrinhoFechado();
+    } else if (action == "Adicionar") {
+      adicionar();
+    } else if (action == "Remover") {
+      remover();
+    } else{
+      System.out.println("Mudança de estado invalida");            
+    }  
+  }
+  
+  public String toString() {
+    return "Comprando";
+  }
+}
+
+class Fechado implements IPedidoEstado {
+  private Pedido pedido; 
+
+  public Fechado(Pedido pedido) {
+    this.pedido = pedido;
+  }
+  
+  public void cancelamento() {
+    System.out.println("Você solicitou cancelamento");
+    this.pedido.estado = new Cancelado(this.pedido);
+  } 
+  
+  public void pagamento() {
+    System.out.println("Pagamento realizado");
+    this.pedido.estado = new Confirmado(this.pedido);
+  } 
+
+  public void doAction(String action) {
+    if (action == "Cancelado") {
+      cancelamento();
+    } else if (action == "Confirmado") {
+      pagamento();
+    } else {
+      System.out.println("Mudança de estado invalida");      
+    }
+  }
+  
+  public String toString() {
+    return "Carrinho Fechado";
+  }
+  
+}
+
+class Confirmado implements IPedidoEstado {
+  private Pedido pedido; 
+
+  public Confirmado(Pedido pedido) {
+    this.pedido = pedido;
+  }
+
+  public void semEstoque() {
+    System.out.println("O pedido está sem estoque");
+    this.pedido.estado = new Cancelado(this.pedido);
+  }
+  
+  public void emPreparo() {
+    this.pedido.distancia = 100;
+    System.out.println("Pedido saiu para entrega");
+    this.pedido.estado = new Transportando(this.pedido);
+  }
+ 
+  public void doAction(String action) {
+    if (action == "Cancelado") {
+      semEstoque();
+    } else if (action == "Transportando") {
+      emPreparo();
+    } else {
+      System.out.println("Mudança de estado invalida");      
+    }
+  }
+  
+  public String toString() {
+    return "Pedido Confirmado";
+  }
+}
+
+class Cancelado implements IPedidoEstado {
+  private Pedido pedido; 
+
+  public Cancelado(Pedido pedido) {
+    this.pedido = pedido;
+  }
+  
+  public void novoPedido() {
+    System.out.println("Novo Pedido Solicitado");
+    this.pedido.numItens = 0;
+    this.pedido.estado = new Comprando(this.pedido);
+  }
+
+  public void feedback() {
+    System.out.println("Feedback do pedido registrado");
+  }
+  
+  public void doAction(String action) {
+    if (action == "Novo Pedido") {
+      novoPedido();
+    } else if (action == "Feedback") {
+      feedback();
+    } else {
+      System.out.println("Mudança de estado invalida");            
+    }
+  }
+  
+  public String toString() {
+    return "Pedido Cancelado";
+  }
+}
+
+class Transportando implements IPedidoEstado{
+  private Pedido pedido; 
+
+  public Transportando(Pedido pedido) {
+    this.pedido = pedido;
+  }
+
+  public void atualizaDistancia(){
+    System.out.println("Atualizando Localização atual do pedido...");
+    this.pedido.distancia -= 50;
+    System.out.println("Distancia atual: " + this.pedido.distancia + "m");
+    if (this.pedido.distancia == 0) {
+      entregaRealizada();
+    }
+  }
+  
+  public void entregaRealizada() {
+    System.out.println("Entrega realizada");
+    this.pedido.estado = new Entregue(this.pedido);
+  }
+
+  public void pedidoPerdido(){
+    System.out.println("Seu pedido foi estraviado");
+    this.pedido.distancia = 0;
+    this.pedido.estado = new Cancelado(this.pedido);
+  }
+
+  public void doAction(String action) {
+    if (action == "Atualizar") {
+      atualizaDistancia();
+    } else if (action == "Perda") {
+      pedidoPerdido();
+    } else {  
+      System.out.println("Mudança de estado invalida");      
+    }
+  }
+  
+  public String toString() {
+    return "Pedido em Transporte";
+  }
+}
+
+class Entregue implements IPedidoEstado{
+  private Pedido pedido; 
+
+  public Entregue(Pedido pedido) {
+    this.pedido = pedido;
+  }
+
+  public void feedback() {
+    System.out.println("Feedback do pedido registrado");
+  }
+
+  public void novoPedido() {
+    System.out.println("Novo Pedido Solicitado");
+    this.pedido.numItens = 0;
+    this.pedido.estado = new Comprando(this.pedido);
+  }
+  
+  public void devolucao() {
+    System.out.println("Devolução Solicitada");
+    this.pedido.estado = new Transportando(this.pedido);
+  }
+
+  public void doAction(String action) {
+    if (action == "Feedback") {
+      feedback();
+    } else if (action == "Novo Pedido") {
+      novoPedido();
+    } else if (action == "Devolucao") {  
+      devolucao();
+    } else {
+      System.out.println("Mudança de estado invalida");
+    }
+  }
+  
+  public String toString() {
+    return "Pedido Entregue";
+  }
+}
+
+class Pedido {
+  public IPedidoEstado estado;
+  public int numItens;
+  public float distancia;
+  
+  public Pedido() {
+    this.numItens = 0;
+    this.estado = new Comprando(this);
+  }
+
+  public void doAction(String action){
+    this.estado.doAction(action);    
+  }  
+} 
+
+public class Main {
+ public static void main(String[] args) {
+   
+   Pedido pedido = new Pedido();
+   
+   pedido.doAction("Adicionar");
+   pedido.doAction("Adicionar");
+   pedido.doAction("Remover");
+   pedido.doAction("Entregue");
+   
+   
+  }
+}

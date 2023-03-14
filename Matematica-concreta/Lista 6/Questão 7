@@ -1,0 +1,34 @@
+recebeA = int(input("Digite um numero: "))
+recebeM = int(input("Digite um numero: "))
+
+aux1, aux2 = [ ], [ ]
+         
+def A(recebeA):
+  for i in range ( 1 , recebeA + 1 ) :
+    if recebeA % i == 0:
+      aux1.append( i )
+  return aux1
+
+def M( recebeM ):
+  for j in range( 1 , recebeM + 1 ):
+    if (recebeM % j) == 0:
+      aux2.append( j )
+  return aux2
+
+a = A( recebeA )
+m = M( recebeM )
+
+def mdc(a, m):
+  aux3 = 0
+
+  for c in range (0, len(a)):
+    if a[c] == m[c]:
+      aux3 += 1
+  return aux3
+
+propiedade = mdc(a,m)
+
+if propiedade == 1:
+  print ("So MDC")
+else:
+  print ("A propriedade no foi atendida")

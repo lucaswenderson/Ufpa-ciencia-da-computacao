@@ -1,0 +1,15 @@
+cedulas = int(input())
+print(cedulas)
+print(int(cedulas/100),"nota(s) de R$ 100,00")
+cedulas %= 100
+print(int(cedulas/50),"nota(s) de R$ 50,00")
+cedulas %= 50
+print(int(cedulas/20),"nota(s) de R$ 20,00")
+cedulas %= 20
+print(int(cedulas/10),"nota(s) de R$ 10,00")
+cedulas %= 10
+print(int(cedulas/5),"nota(s) de R$ 5,00")
+cedulas %= 5
+print(int(cedulas/2),"nota(s) de R$ 2,00")
+cedulas %= 2
+print(int(cedulas/1),"nota(s) de R$ 1,00")

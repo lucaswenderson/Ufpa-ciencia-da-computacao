@@ -1,0 +1,201 @@
+abstract class Sorvete {
+  protected String descricao;
+
+  protected Sorvete() {
+    descricao = "";
+  }
+
+  public String getDescricao() {
+    return descricao;
+  }
+
+  abstract public double getPreco();
+}
+
+class SorveteNapolitano extends Sorvete {
+
+  public SorveteNapolitano() {
+    descricao = "Sorvete Napolitano";
+  }
+
+  @Override
+  public double getPreco() {
+    return 1.50;
+  }
+}
+
+class SorveteMorango extends Sorvete {
+
+  public SorveteMorango() {
+    descricao = "Sorvete Morango";
+  }
+
+  @Override
+  public double getPreco() {
+    return 1.50;
+  }
+}
+
+class SorveteChocolate extends Sorvete {
+
+  public SorveteChocolate() {
+    descricao = "Sorvete Chocolate";
+  }
+
+  @Override
+  public double getPreco() {
+    return 1.50;
+  }
+}
+
+class SorveteFlocos extends Sorvete {
+
+  public SorveteFlocos() {
+    descricao = "Sorvete Flocos";
+  }
+
+  @Override
+  public double getPreco() {
+    return 1.50;
+  }
+}
+
+class SorvetePave extends Sorvete {
+
+  public SorvetePave() {
+    descricao = "Sorvete Pave";
+  }
+
+  @Override
+  public double getPreco() {
+    return 1.50;
+  }
+}
+
+abstract class DecoratorSorvete extends Sorvete {
+
+  protected Sorvete sorvete;
+
+  protected DecoratorSorvete( Sorvete sorvete ){
+    this.sorvete = sorvete;
+  }
+  
+  abstract public String getDescricao();
+}
+
+class Copo extends DecoratorSorvete {
+
+  public Copo( Sorvete sorvete ){
+    super( sorvete );
+  }
+
+  @Override
+  public String getDescricao(){
+    return sorvete.getDescricao() + ", Recipiente: Copo";
+  }
+
+  @Override
+  public double getPreco(){
+    return sorvete.getPreco() + 0.2;
+  }
+}
+
+class Taca extends DecoratorSorvete {
+
+  public Taca( Sorvete sorvete ){
+    super( sorvete );
+  }
+
+  @Override
+  public String getDescricao(){
+    return sorvete.getDescricao() + ", Recipiente: Taca";
+  }
+
+  @Override
+  public double getPreco(){
+    return sorvete.getPreco() + 0.0;
+  }
+}
+
+class Casquinha extends DecoratorSorvete {
+
+  public Casquinha( Sorvete sorvete ){
+    super( sorvete );
+  }
+
+  @Override
+  public String getDescricao(){
+    return sorvete.getDescricao() + ", Recipiente: Casquinha";
+  }
+
+  @Override
+  public double getPreco(){
+    return sorvete.getPreco() + 1.5;
+  }
+}
+
+class CoberturaChocolate extends DecoratorSorvete {
+
+  public CoberturaChocolate( Sorvete sorvete ){
+    super( sorvete );
+  }
+
+  @Override
+  public String getDescricao(){
+    return sorvete.getDescricao() + ", Cobertura: Chocolate";
+  }
+
+  @Override
+  public double getPreco(){
+    return sorvete.getPreco() + 0.5;
+  }
+}
+
+class CoberturaMorango extends DecoratorSorvete {
+
+  public CoberturaMorango( Sorvete sorvete ){
+    super( sorvete );
+  }
+
+  @Override
+  public String getDescricao(){
+    return sorvete.getDescricao() + ", Cobertura: Morango";
+  }
+
+  @Override
+  public double getPreco(){
+    return sorvete.getPreco() + 0.5;
+  }
+}
+
+class CoberturaCaramelo extends DecoratorSorvete {
+
+  public CoberturaCaramelo( Sorvete sorvete ){
+    super( sorvete );
+  }
+
+  @Override
+  public String getDescricao(){
+    return sorvete.getDescricao() + ", Cobertura: Caramelo";
+  }
+
+  @Override
+  public double getPreco(){
+    return sorvete.getPreco() + 0.5;
+  }
+}
+
+class Main {
+  public static void main(String args[]) {
+
+    Sorvete sorveteChocolate = new SorveteChocolate();
+    System.out.println(sorveteChocolate.getDescricao() + " | R$ " + sorveteChocolate.getPreco());
+
+    Sorvete sorveteChocolateCasquinha = new Casquinha(sorveteChocolate);
+    System.out.println(sorveteChocolateCasquinha.getDescricao() + " | R$ " + sorveteChocolateCasquinha.getPreco());
+
+    Sorvete sorveteChocolateCasquinhaCobCaramelo = new CoberturaCaramelo(sorveteChocolateCasquinha);
+    System.out.println(sorveteChocolateCasquinhaCobCaramelo.getDescricao() + " | R$ " + sorveteChocolateCasquinhaCobCaramelo.getPreco());
+
+  }
+}

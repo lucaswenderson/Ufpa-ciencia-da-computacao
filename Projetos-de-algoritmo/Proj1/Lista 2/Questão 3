@@ -1,0 +1,42 @@
+#include <iostream>
+using namespace std;
+
+typedef int tDado;
+struct No {
+	tDado dado;
+	No* prox;
+};
+typedef No* ptNo;
+
+int main() {
+	No* p;
+	ptNo x1 = new No;
+	ptNo x2 = new No;
+	ptNo x3 = new No;
+	ptNo x4 = new No;
+
+	x1 -> dado = 4;
+	x2 -> dado = 7;
+	x3 -> dado = 1;
+	x4 -> dado = 9;
+	p = x1;
+	x1 -> prox = x2;
+	x2 -> prox = x3;
+	x3 -> prox = x4;
+	x4 -> prox = NULL;
+
+	ptNo q = new No;
+  ptNo aux;
+  q = x3;
+
+  ptNo med = new No;
+  med -> dado = ((q->dado) + (q->prox->dado))/2;
+  med -> prox = q->prox;
+  q -> prox = med;
+  cout << "Média do ultimo e penultimo entre eles:\n";
+  aux = p;
+	while (aux != NULL) {
+		cout << aux -> dado << " ";
+		aux = aux -> prox;
+  }
+}

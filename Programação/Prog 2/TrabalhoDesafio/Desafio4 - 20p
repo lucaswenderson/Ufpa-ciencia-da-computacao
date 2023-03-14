@@ -1,0 +1,70 @@
+public class Main {
+  //Função que contabiliza a quantidade de peças
+  public static void contabilizar(String tabuleiro) {
+    int[] quantidade = {0, 0, 0, 0, 0, 0, 0};
+    int i = 0;
+
+    while(i <= tabuleiro.length() - 1) { // percorre a string que representa o tabuleiro
+      for (int peca = 1; peca < quantidade.length; peca++) { // percorre o array que representa cada peça
+        /*Enquanto o valor na posição i do tabuleiro for igual ao valor que a peça representa no loop,
+        a peça será o indice usado para contabilizar a quantidade no vetor*/
+        while (tabuleiro.charAt(i) == Integer.toString(peca).charAt(0)) {
+          quantidade[peca]++;
+          break;
+        }
+      }
+      i++;
+    }
+    imprime(quantidade);
+  }
+
+  // Imprime a quantidade de peças de acordo com a função de contabilizar
+  public static void imprime(int[] quantidade) {
+    System.out.println("Peão: "+quantidade[1]+" peças(s)");
+    System.out.println("Bispo: "+quantidade[2]+" peças(s)");
+    System.out.println("Cavalo: "+quantidade[3]+" peças(s)");
+    System.out.println("Torre: "+quantidade[4]+" peças(s)");
+    System.out.println("Rainha: "+quantidade[5]+" peças(s)");
+    System.out.println("Rei: "+quantidade[6]+" peças(s)");
+   
+    System.out.println("");
+  }
+
+  public static void main(String[] args) {
+    
+    String tabuleiro =
+      "4 3 2 5 6 2 3 4"+
+      "1 1 1 1 1 1 1 1"+
+      "0 0 0 0 0 0 0 0"+
+      "0 0 0 0 0 0 0 0"+
+      "0 0 0 0 0 0 0 0"+
+      "0 0 0 0 0 0 0 0"+
+      "1 1 1 1 1 1 1 1"+
+      "4 3 2 5 6 2 3 4";
+    
+    String tabuleiro2 =
+      "0 0 0 0 0 0 0 0"+
+      "0 0 0 0 0 0 0 0"+
+      "0 0 0 0 0 0 0 0"+
+      "0 0 0 1 1 0 0 0"+
+      "0 0 0 1 1 0 0 0"+
+      "0 0 0 0 0 0 0 0"+
+      "0 0 0 0 0 0 0 0"+
+      "0 0 0 0 0 0 0 0";
+
+    contabilizar(tabuleiro);
+    contabilizar(tabuleiro2);
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+

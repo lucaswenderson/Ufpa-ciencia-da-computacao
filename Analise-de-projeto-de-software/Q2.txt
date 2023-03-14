@@ -1,0 +1,146 @@
+import java.util.Date;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+
+interface IContaEstado {
+  public void realizarSaque(float quantia);
+  public void realizarDeposito(float quantia);
+}
+
+class Disponivel implements IContaEstado {
+  private ContaBancaria conta;
+
+  public Disponivel(ContaBancaria conta) {
+    this.conta = conta;
+  }
+
+  public void realizarSaque(float quantia) {    
+    float flag = this.conta.saldo + this.conta.limite;
+    
+    this.conta.saldo -= quantia;
+    System.out.println("Retirado: "+ quantia +", Saldo Atual: " + this.conta.saldo);
+
+    
+    if((flag >= quantia) & (quantia > this.conta.saldo)) {
+      this.conta.estado = new Devedor(this.conta);
+    }
+  }
+
+  public void realizarDeposito(float quantia) {
+    this.conta.saldo += quantia;
+    System.out.println("Depositado: "+ quantia +", Saldo Atual: " + this.conta.saldo);
+  } 
+
+  public String toString() {
+    return "Disponivel";
+  }
+  
+}
+
+class Devedor implements IContaEstado {
+  private ContaBancaria conta;
+  private int dias;
+
+  public Devedor(ContaBancaria conta) {
+    this.conta = conta;
+  }
+
+  public void realizarSaque(float quantia) {
+    float flag = this.conta.saldo + this.conta.limite;
+    
+    if(quantia <= flag) {
+      this.conta.saldo -= quantia;
+      System.out.println("Retirado: "+ quantia +", Saldo Atual: " + this.conta.saldo);
+    }
+  }
+
+  public void realizarDeposito(float quantia) {
+    this.conta.saldo += quantia;
+    System.out.println("Depositado: "+ quantia +", Saldo Atual: " + this.conta.saldo);
+    
+    if(this.conta.saldo > 0) {
+      this.conta.estado = new Disponivel(this.conta);
+    }
+    
+  } 
+
+  public String toString() {
+    return "Devedor";
+  }
+}
+
+class ContaBancaria {
+  public String numero;
+  public float limite;
+  public float saldo;
+  public String dataAbertura;
+  public String dataEncerramento;
+  public IContaEstado estado;
+  private Agencia agencia;
+  private ArrayList<Correntista> correntistas; 
+
+  private String getDateTime() {
+  	DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+  	Date date = new Date();
+  	return dateFormat.format(date);
+  }
+  
+  public ContaBancaria() {
+    this.saldo = 0;
+    this.limite = 1000;
+    this.dataAbertura = getDateTime();
+    this.estado = new Disponivel(this);
+  }
+
+  public ContaBancaria(float valor) {
+    this.limite = 1000 + valor;
+    this.dataAbertura = getDateTime();
+    this.estado = new Disponivel(this);
+    this.realizarDeposito(valor);
+  }
+
+  public void realizarSaque(float valor) {
+    this.estado.realizarSaque(valor);
+    System.out.println("Estado da conta: "+ this.estado.toString());
+  }
+
+  public void realizarDeposito(float valor) {
+    this.estado.realizarDeposito(valor);
+    System.out.println("Estado da conta: "+ this.estado.toString());
+  }  
+
+  public void contaFechada() {
+    if(this.estado.toString() == "Disponivel"){
+      this.estado.realizarSaque(this.saldo);
+      this.dataEncerramento = getDateTime();
+      System.out.println("Conta encerrada");     
+    } else {
+      System.out.println("Conta precisa estar disponivel");  
+    }
+  }
+}
+
+class Agencia {
+  private String numero;
+  private String nome;
+  private ArrayList<ContaBancaria> contas; 
+}
+
+class Correntista {
+  private String nome;
+  private String cpf;
+  private ArrayList<ContaBancaria> contas; 
+}
+
+public class Main {
+ public static void main(String[] args) {
+    
+   ContaBancaria conta = new ContaBancaria(500);
+   conta.realizarDeposito(200);
+   conta.realizarSaque(1000);
+   conta.realizarDeposito(400); 
+   conta.contaFechada();
+   
+  }
+}

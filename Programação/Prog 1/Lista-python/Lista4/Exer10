@@ -1,0 +1,18 @@
+nAnos = 0
+nCasos = int(input())
+for i in range(nCasos):
+  pA, pB, g1, g2 = input().split(" ")
+  pA, pB, g1, g2 = int(pA), int(pB), float(g1), float(g2)
+  while(pA <= pB):
+    pA += pA*(g1/100)
+    pB += pB*(g2/100)
+    pA, pB = int(pA), int(pB)
+    nAnos += 1
+    if(nAnos > 100):
+      nAnos = 101
+      break
+  if(nAnos <= 100):
+    print(nAnos,"anos.")
+  else:
+    print("Mais de 1 seculo.")
+  nAnos = 0

@@ -1,0 +1,17 @@
+n = int(input("Digite o número desejado: "))
+dec = 2
+valores = []
+
+while n!=1:
+  divisões=0
+  while (n % dec) == 0:
+    n = n / dec
+    divisões = divisões + 1
+  if divisões != 0:
+    string = str(dec)+ "^"+ str(divisões)
+    valores.append(string)
+  dec = dec + 1
+print("\n")  
+print("Fatoração: ", end = " ")
+for i in range(len(valores)):
+  print(valores[i],"*", end = " ")

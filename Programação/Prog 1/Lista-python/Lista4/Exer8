@@ -1,0 +1,7 @@
+maior = 0
+for i in range(100):
+  x = int(input())
+  if (x > maior):
+    maior = x
+    posicao = i
+print("%i\n%i" %(maior, posicao+1))

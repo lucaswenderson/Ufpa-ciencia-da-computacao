@@ -1,0 +1,13 @@
+Matriz = [[0]*12,[0]*12,[0]*12,[0]*12,[0]*12,[0]*12,[0]*12,[0]*12,[0]*12,[0]*12,[0]*12,[0]*12]
+soma, contadorInf, contadorSup = 0, 5, 7
+
+for i in range(12):
+  for j in range(12):
+    Matriz[i][j] = int(input("Insira o valor para Matriz[%i][%i]: " %(i,j)))
+
+for i in range(7,12):
+  for j in range(contadorInf,contadorSup):
+    soma += Matriz[i][j]
+  contadorInf -= 1
+  contadorSup += 1
+print("\nSoma dos valores >", soma)

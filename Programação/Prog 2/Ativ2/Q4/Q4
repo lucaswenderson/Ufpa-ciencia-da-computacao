@@ -1,0 +1,33 @@
+import java.util.Scanner;
+
+class Main {
+
+  public static boolean isEven(int num) {  
+    if (num % 2 == 0)
+      return true;
+    else
+      return false; 
+  }
+
+  public static void imprimir(boolean num) { 
+    if (num == true)
+      System.out.println("Numero Par");
+    else
+      System.out.println("Numero Impar"); 
+  }
+
+  public static void main(String[] args) {
+    int num;
+    Scanner ler = new Scanner(System.in);
+
+    System.out.println("Para encerrar digite -1");
+
+    while(true) {
+      System.out.print("Insira um numero para verificar: ");
+      num = ler.nextInt();
+      if (num == -1)
+        break;
+      imprimir(isEven(num));
+    }  
+  }
+}

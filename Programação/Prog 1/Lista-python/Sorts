@@ -1,0 +1,51 @@
+import random as rd 
+
+def BubbleSort(array):
+  for i in range(len(array),0,-1):
+    for j in range(i-1):
+      if array[j] > array[j+1]:
+        array[j], array[j+1] = array[j+1], array[j]
+  return array
+
+def SelectionSort(array):
+  for i in range(len(array)):
+    minAtual = i
+    for valorAtual in range(i+1,len(array)):
+      if array[valorAtual] < array[minAtual]:
+        minAtual = valorAtual
+    array[i], array[minAtual] = array[minAtual], array[i]
+  return array
+
+def InsetionSort(array):
+  for i in range(len(array)):
+    while (i > 0):
+      if array[i-1] > array[i]:
+        array[i], array[i-1] = array[i-1], array[i]
+      else:
+        break
+      i -= 1
+  return array
+
+def QuickSort(array):
+  esquerda = []
+  meio = []
+  direita = []
+
+  if len(array) <= 1: 
+    return array
+  else:
+    pivo = rd.choice(array)
+    for i in range(len(array)):
+      if array[i] < pivo:
+        esquerda.append(array[i])
+      elif array[i] == pivo:
+        meio.append(array[i])
+      elif array[i] > pivo:
+        direita.append(array[i])
+    array = QuickSort(esquerda) + meio + QuickSort(direita)
+    return array
+
+array = [None]*10
+for i in range(10):
+  array[i] =rd.randint(0,20)
+print(array)

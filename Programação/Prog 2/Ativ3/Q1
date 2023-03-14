@@ -1,0 +1,121 @@
+class Calendar {
+
+  public Calendar(){}
+
+  public static boolean bissexto(int ano) {
+    if((ano % 4 == 0) & (ano % 100 != 0) | (ano % 400 == 0)) 
+      return true;
+    else
+      return false;
+  }
+
+  public static boolean validarData(int dia, int mes, int ano) {
+    if((dia < 1) || (dia > 31) || (mes < 1) || (mes > 12))
+      return false;
+    if((dia == 31) & ((mes == 4) || (mes == 6) || (mes == 9) || (mes == 11)))
+      return false;
+    if((mes == 2) & (dia > 29))
+      return false;
+    return true;
+  }
+
+  public static int diasNoMes(int mes, int ano) {
+    if((mes == 1) || (mes == 3) || (mes == 5) || (mes == 7) || (mes == 8) || (mes == 10) || (mes == 12))
+      return 31;  
+    else {
+      if((mes == 4) || (mes == 6) || (mes == 9) || (mes == 11))
+        return 30;
+      else {
+        if(bissexto(ano))
+          return 29;
+        else
+          return 28;
+      }
+    }
+  }
+
+}
+
+class Pessoa {
+  private int diaNasc, mesNasc, anoNasc;
+  private int[] idade;
+  private String nome;
+  private Calendar cal;
+
+
+  public Pessoa(String nome, int dia, int mes, int ano) {
+		this.nome = nome;
+		this.diaNasc = dia;
+		this.mesNasc = mes;
+		this.anoNasc = ano;
+    idade = new int[3];
+    cal = new Calendar();
+	}
+
+  public void calculaIdade(int diaAtu, int mesAtu, int anoAtu) {
+    int contDia = 0, contMes = 0, contAno = 0;
+    int auxDia = diaNasc, auxMes = mesNasc, auxAno = anoNasc;
+
+    while((auxMes < mesAtu - 1) | (auxAno < anoAtu)) {
+      auxMes++;
+      contMes++;
+
+      if(contMes == 12) {
+        contMes = 0;
+        contAno++;
+      }
+      if(auxMes == 12) {
+        auxAno++;
+        auxMes = 0;
+      }
+    }
+
+    if(auxDia == diaAtu) {
+      contMes++;
+      contDia = 0;
+    }
+    else if(auxDia < diaAtu) {
+      contMes++;
+      contDia = diaAtu - auxDia;
+    }
+    else {
+      contDia = cal.diasNoMes(mesAtu - 1, anoAtu) + diaAtu - auxDia;
+    }
+
+    idade[0] = contAno;
+    idade[1] = contMes;
+    idade[2] = contDia;
+  }
+
+  public int[] informaIdade() {
+    return idade;
+  }
+
+  public String informaNome() {
+    return nome;
+  }
+
+  public void ajustaDataDeNascimento(int dia, int mes, int ano) {
+    this.diaNasc = dia;
+		this.mesNasc = mes;
+		this.anoNasc = ano;
+  }
+} 
+
+class Main {
+  public static void main(String[] args) {
+
+    Pessoa albertEinstein = new Pessoa("Albert Einstein", 14, 3, 1879);
+    Pessoa isaacNewton = new Pessoa("Isaac Newton", 4, 1, 1643);
+
+    albertEinstein.calculaIdade(30,7,2020);
+    isaacNewton.calculaIdade(30,7,2020);
+
+    int[] idadeAlbert = albertEinstein.informaIdade();
+    int[] idadeIsaac = isaacNewton.informaIdade();
+
+    System.out.println("A idade de "+albertEinstein.informaNome()+" é de: "+idadeAlbert[0]+" anos, "+idadeAlbert[1]+" meses e "+idadeAlbert[2]+" dias.");
+
+    System.out.println("A idade de "+isaacNewton.informaNome()+" é de: "+idadeIsaac[0]+" anos, "+idadeIsaac[1]+" meses e "+idadeIsaac[2]+" dias.");
+  }
+}

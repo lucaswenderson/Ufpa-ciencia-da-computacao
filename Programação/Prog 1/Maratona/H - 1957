@@ -1,0 +1,4 @@
+valor = hex(int(input()))
+valor = valor[2:]
+valor = valor.upper()
+print(valor)

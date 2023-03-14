@@ -1,0 +1,126 @@
+#include <iostream>
+#include <bits/stdc++.h>
+using namespace std;
+
+typedef int tDado;
+struct No {
+    tDado dado;
+    No *prox;
+}; typedef No* ptNo;
+
+struct Desc {
+    ptNo inicio;
+    ptNo fim;
+}; typedef Desc* desc;
+
+void inicializaFila(desc &x) {
+    x->inicio = NULL;
+    x->fim = NULL;
+}
+
+bool verificaVazia(desc &x){
+    if (x -> inicio == NULL)
+        return true;
+    else
+        return false;
+}
+
+void enfileira(desc &x, tDado val) {
+    ptNo t = new No;
+    t->dado = val;
+    t->prox = NULL;
+
+    if (verificaVazia(x)){
+        x->inicio = t;
+        x->fim = t;
+    } else {
+        x->fim->prox = t;
+        x->fim = t;
+    }
+}
+
+void exibir_fila(desc &x) {
+    if (x->inicio == NULL)
+        cout << "A fila está vazia\n";
+    else {
+        ptNo q = x->inicio;
+        while (q->prox != NULL){
+            cout << q->dado << " -> ";
+            q = q->prox;
+        }
+        cout << q->dado << "\n";
+    }
+}
+
+bool desenfileiraElem(desc &x) {
+  ptNo r;
+  if (verificaVazia(x))
+    return false;
+  else {
+    r = x->inicio;
+    x->inicio = x->inicio->prox;
+    delete r;
+    return true;
+  }
+}
+
+void informar_inicio (desc descritor) 
+{
+  if (verificaVazia(descritor))
+    cout << INT_MIN << "\n";
+  else
+    cout << "O primeiro elemento da lista é " << descritor->inicio->dado << "\n";
+}
+int main (){
+  desc descr;
+  int val;
+  int opcao = 1;
+  inicializaFila(descr);
+    cout << "---------------------------------------- \n";
+    cout << "1 - Enfileirar elemento\n";
+    cout << "2 - Verificação de fila vazia\n";
+    cout << "3 - Exibir fila\n";
+    cout << "4 - Informar Inicio\n";
+    cout << "5 - Desenfileirar elementos\n";
+    cout << "Para sair digite 0\n";
+    cout << "---------------------------------------- \n";
+
+
+   while (opcao != 0){
+    cout << "\n\nEscolha uma das opções do menu: ";
+    cin >> opcao;
+    switch (opcao){
+      case 1:
+        cout << "Insira o elemento: ";
+        cin >> val;
+        enfileira(descr, val);
+        break;
+
+      case 2:
+        if(verificaVazia(descr) == 1) 
+          cout << "Vazia \n";
+        else
+          cout << "não está vazia\n";
+        break;
+
+      case 3:
+        exibir_fila(descr);
+        break;
+
+      case 4:
+        informar_inicio(descr);
+        break;
+
+      case 5:
+        if (desenfileiraElem(descr)){
+          printf("Desenfilerado com suceso");
+        } else {
+          printf("Não foi possivel desenfileirar");
+        }
+        break;
+
+      default:
+        break;
+    }
+  };  
+}

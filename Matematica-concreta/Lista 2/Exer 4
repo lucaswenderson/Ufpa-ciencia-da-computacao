@@ -1,0 +1,11 @@
+lista = []
+n = int(input("Insira o tamanho da sequencia: "))
+print("\nInsira os valores da sequencia: ")
+for i in range(n):
+  lista.append(int(input()))
+
+a = int(input("Insira o indice 'a': "))
+b = int(input("Insira o indice 'b': "))
+
+print("\nSequencia completa >", lista)
+print("Seguimento com os extremos 'a' até 'b' >", lista[a:b])

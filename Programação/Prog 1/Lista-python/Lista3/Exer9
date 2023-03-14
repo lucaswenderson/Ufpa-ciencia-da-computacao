@@ -1,0 +1,9 @@
+horaInicio, horaFim = input().split(" ")
+horaInicio, horaFim = int(horaInicio), int(horaFim) 
+horaDuracao = horaFim - horaInicio
+if (horaInicio == horaFim):
+  print("O JOGO DUROU 24 HORA(S)")
+if (horaDuracao > 0):
+  print ("O JOGO DUROU %i HORA(S)" %horaDuracao)
+if (horaDuracao < 0):
+  print("O JOGO DUROU",format(horaDuracao + 24,".0f"),"HORA(S)")
